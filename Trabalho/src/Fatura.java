@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fatura {
+
     private int NIFemitente;
     private String tipoemitente;
     private LocalDateTime datadespesa;
@@ -80,9 +81,10 @@ public class Fatura {
         }
         return faturas;
     }
-
+*/
+    @Override
     public Fatura clone(){
         return new Fatura(this);
     }
-    */
+
 }
