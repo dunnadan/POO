@@ -1,6 +1,4 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Fatura {
 
@@ -12,7 +10,7 @@ public class Fatura {
     private String atividade;
     private float despesa;
 
-    // private ArrayList<Fatura> asPrimas;
+    // private ArrayList<efatura.Fatura> asPrimas;
 
     public Fatura(Fatura fatura) {
 
@@ -73,15 +71,7 @@ public class Fatura {
     public void setDespesa(float despesa) {
         this.despesa = despesa;
     }
-/*
-    public List<Fatura> getAsPrimas() {
-        ArrayList<Fatura> faturas = new ArrayList<>();
-        for(Fatura f: this.asPrimas){
-            faturas.add(new Fatura(f));
-        }
-        return faturas;
-    }
-*/
+
     @Override
     public Fatura clone(){
         return new Fatura(this);
