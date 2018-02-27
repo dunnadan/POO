@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3b4c4a3-84bd-49c1-8568-78daf0eeb7fc" name="Default" comment="" />
+    <list default="true" id="a3b4c4a3-84bd-49c1-8568-78daf0eeb7fc" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/Trabalho/src/Contribuinte.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Trabalho/src/Empresa.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,10 +15,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Fatura.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Fatura.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trabalho/src/Fatura.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
+            <state relative-caret-position="1548">
               <caret line="86" column="6" lean-forward="false" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -51,6 +55,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Contribuinte.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trabalho/src/Contribuinte.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Empresa.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Trabalho/src/Empresa.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -72,6 +98,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Trabalho/src/Fatura.java" />
+        <option value="$PROJECT_DIR$/Trabalho/src/Contribuinte.java" />
+        <option value="$PROJECT_DIR$/Trabalho/src/Empresa.java" />
       </list>
     </option>
   </component>
@@ -111,6 +139,12 @@
               <item name="POO" type="b2602c69:ProjectViewProjectNode" />
               <item name="POO" type="462c0819:PsiDirectoryNode" />
               <item name="Trabalho" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="POO" type="b2602c69:ProjectViewProjectNode" />
+              <item name="POO" type="462c0819:PsiDirectoryNode" />
+              <item name="Trabalho" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -282,7 +316,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Trabalho/src/Fatura.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
+        <state relative-caret-position="1548">
           <caret line="86" column="6" lean-forward="false" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -315,6 +349,24 @@
             <element signature="e#1525#1526#0" expanded="true" />
             <element signature="e#1563#1564#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trabalho/src/Contribuinte.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trabalho/src/Empresa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
