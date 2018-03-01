@@ -1,27 +1,71 @@
 import java.util.ArrayList;
 
-public class Contribuinte {
-    private int NIF;
-    private String email;
+public class Contribuinte implements java.io.Serializable {
+    
+    private int nif;
     private String nome;
+    private String email;
     private String morada;
     private String password;
-    private int dependentes;
-    private ArrayList<String> NIFdependentes;
-    private float coeficiente;
-    private ArrayList<String> Atvidadesposs;
+    private double coeficiente;
+    private ArrayList<Integer> dependentes;
+    private ArrayList<String> atividades;
+    private transient ArrayList<Fatura> futuras;
 
-
-    public int getNIF() {
-        return NIF;
+    //Constructors
+    public Contribuinte(){
+        this.atividades = new ArrayList<String>();
+        this.dependentes = new ArrayList<Integer>();
     }
 
-    public void setNIF(int NIF) {
-        this.NIF = NIF;
+    public Contribuinte(int nif, String nome, String email, String morada, String password, 
+                        double coeficiente, int[] dependentes, String[] atividades){
+        
+        this.dependentes = new ArrayList<Integer>();
+        this.atividades = new ArrayList<String>();
+
+        this.nif = nif;
+        this.nome = nome;
+        this.email = email;
+        this.morada = morada;
+        this.password = password;
+        this.coeficiente = coeficiente;
+
+        for(int dep : dependentes)
+            this.dependentes.add(dep);
+
+        for(String atv : atividades)
+            this.atividades.add(atv);
+    }
+
+    public Contribuinte(Contribuinte object){
+        
+        this.dependentes = new ArrayList<Integer>();
+        this.atividades = new ArrayList<String>();
+
+        this.nif = object.getNIF();
+        this.nome = object.getNome();
+        this.email = object.getEmail();
+        this.morada = object.getMorada();
+        this.password = object.getPassword();
+        this.coeficiente = object.getCoeficiente();
+        this.dependentes = object.getDependentes();
+        this.atividades = object.getAtividades();
+        this.futuras = object.getFaturas();
+    }
+
+
+    //Methods
+    public int getNIF() {
+        return this.nif;
+    }
+
+    public void setNIF(int nif) {
+        this.nif = nif;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -29,7 +73,7 @@ public class Contribuinte {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -37,7 +81,7 @@ public class Contribuinte {
     }
 
     public String getMorada() {
-        return morada;
+        return this.morada;
     }
 
     public void setMorada(String morada) {
@@ -45,42 +89,64 @@ public class Contribuinte {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public int getDependetes() {
-        return dependentes;
+    public ArrayList<Integer> getDependentes() {
+        return this.dependentes;
     }
 
-    public void setDependentes(int dependentes) {
+    public void setDependentes(ArrayList<Integer> dependentes) {
         this.dependentes = dependentes;
     }
 
-    public ArrayList<String> getNIFdependentes() {
-        return NIFdependentes;
+    public int getNumDependentes(){
+        return dependentes.size();
     }
 
-    public void setNIFdependentes(ArrayList<String> NIFdependentes) {
-        this.NIFdependentes = NIFdependentes;
+    public void addDependente(int dependente){
+        dependentes.add(dependente);
     }
 
-    public float getCoeficiente() {
-        return coeficiente;
+    public void removeDependente(int dependente){
+        if (this.dependentes.contains(dependente))
+            this.dependentes.remove(dependente);
     }
 
-    public void setCoeficiente(float coeficiente) {
+    public double getCoeficiente() {
+        return this.coeficiente;
+    }
+
+    public void setCoeficiente(double coeficiente) {
         this.coeficiente = coeficiente;
     }
 
-    public ArrayList<String> getAtvidadesposs() {
-        return new ArrayList<String>(this.Atvidadesposs);
+    public ArrayList<String> getAtividades() {
+        return this.atividades;
     }
 
-    public void setAtvidadesposs(ArrayList<String> atvidadesposs) {
-        Atvidadesposs = atvidadesposs;
+    public void setAtividades(ArrayList<String> atividades) {
+        this.atividades = atividades;
+    }
+
+    public void addAtividades(String atividade){
+        this.atividades.add(atividade);
+    }
+
+    public void removeAtividades(String atividade){
+        if (this.atividades.contains(atividade))
+            this.atividades.remove(atividade);
+    }
+
+    public ArrayList<Fatura> getFaturas(){
+        return this.faturas;
+    }
+
+    public void setFaturas(ArrayList<Fatura> faturas){
+        this.faturas = faturas;
     }
 }
