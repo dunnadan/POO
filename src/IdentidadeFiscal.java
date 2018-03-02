@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class IdentidadeFiscal implements java.io.Serializable {
     
-    protected int nif;
-    protected String nome;
-    protected String email;
-    protected String morada;
-    protected String password;
-    protected double coeficiente;
-    protected ArrayList<String> atividades;
-    protected ArrayList<String> faturas;
-    protected transient ArrayList<Fatura> faturas_obj;
+    private int nif;
+    private String nome;
+    private String email;
+    private String morada;
+    private String password;
+    private double coeficiente;
+    private ArrayList<String> atividades;
+    private ArrayList<String> faturas;
+    private transient ArrayList<Fatura> faturas_obj;
 
     //Methods
     public int getNIF() {
