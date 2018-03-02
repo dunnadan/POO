@@ -1,55 +1,90 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class Fatura {
+public class Fatura implements java.io.Serializable {
 
-    private int NIFemitente;
-    private String tipoemitente;
-    private LocalDateTime datadespesa;
-    private int NIFcliente;
+    private String numero;
+    private int nif_emitente;
+    private int nif_cliente;
+    private String tipo;
     private String descricao;
     private String atividade;
-    private float despesa;
+    private double valor;
+    private LocalDate data;
 
-    // private ArrayList<efatura.Fatura> asPrimas;
-
-    public Fatura(Fatura fatura) {
+    //Constructors
+    public Fatura(){
 
     }
 
-    public int getNIFemitente() {
-        return NIFemitente;
+    public Fatura(String numero, int nif_emitente, int nif_cliente, String tipo, String descricao, String atividade, double valor, String data){
+
+        this.numero = numero;
+        this.nif_emitente = nif_emitente;
+        this.nif_cliente = nif_cliente;
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.atividade = atividade;
+        this.valor = valor;
+        this.data = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public void setNIFemitente(int NIFemitente) {
-        this.NIFemitente = NIFemitente;
+    public Fatura(Fatura object){
+
+        this.numero = object.getNumero();
+        this.nif_emitente = object.getNIFEmitente();
+        this.nif_cliente = object.getNIFCliente();
+        this.tipo = object.getTipo();
+        this.descricao = object.getDescricao();
+        this.atividade = object.getAtividade();
+        this.valor = object.getValor();
+        this.data = object.getData();   
+
     }
 
-    public String getTipoemitente() {
-        return tipoemitente;
+    //Methods
+    public String getNumero(){
+        return this.numero;
     }
 
-    public void setTipoemitente(String tipoemitente) {
-        this.tipoemitente = tipoemitente;
+    public void setNumero(String num){
+        this.numero = num;
     }
 
-    public LocalDateTime getDatadespesa() {
-        return datadespesa;
+    public int getNIFEmitente() {
+        return this.nif_emitente;
     }
 
-    public void setDatadespesa(LocalDateTime datadespesa) {
-        this.datadespesa = datadespesa;
+    public void setNIFEmitente(int nif) {
+        this.nif_emitente = nif;
     }
 
-    public int getNIFcliente() {
-        return NIFcliente;
+    public String getTipo() {
+        return this.tipo;
     }
 
-    public void setNIFcliente(int NIFcliente) {
-        this.NIFcliente = NIFcliente;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public LocalDate getData() {
+        return this.data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public int getNIFCliente() {
+        return this.nif_cliente;
+    }
+
+    public void setNIFCliente(int nif) {
+        this.nif_cliente = nif;
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -57,24 +92,19 @@ public class Fatura {
     }
 
     public String getAtividade() {
-        return atividade;
+        return this.atividade;
     }
 
     public void setAtividade(String atividade) {
         this.atividade = atividade;
     }
 
-    public float getDespesa() {
-        return despesa;
+    public double getValor() {
+        return this.valor;
     }
 
-    public void setDespesa(float despesa) {
-        this.despesa = despesa;
-    }
-
-    @Override
-    public Fatura clone(){
-        return new Fatura(this);
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
 }

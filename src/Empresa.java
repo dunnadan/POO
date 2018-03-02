@@ -1,74 +1,67 @@
 import java.util.ArrayList;
 
-public class Empresa {
-    private int NIF;
-    private String email;
-    private String nome;
-    private String morada;
-    private String password;
-    private ArrayList<Fatura> faturasemi;
-    private float fatorded;
+public class Empresa extends IdentidadeFiscal implements java.io.Serializable {
 
-    public int getNIF() {
+    //Constructors
+    public Empresa(){
 
-        return NIF;
+        this.atividades = new ArrayList<String>();
+        this.faturas = new ArrayList<String>();
+        this.faturas_obj = new ArrayList<Fatura>();
     }
 
-    public void setNIF(int NIF) {
-        this.NIF = NIF;
-    }
+    public Empresa(int nif, String nome, String email, String morada, String password, double coeficiente, String[] faturas, String[] atividades){
+        
+        this.atividades = new ArrayList<String>();
+        this.faturas = new ArrayList<String>();
+        this.faturas_obj = new ArrayList<Fatura>();
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
+        this.nif = nif;
         this.nome = nome;
-    }
-
-    public String getMorada() {
-        return morada;
-    }
-
-    public void setMorada(String morada) {
+        this.email = email;
         this.morada = morada;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
+        this.coeficiente = coeficiente;
+
+        for(String fat : faturas)
+            this.faturas.add(fat);
+
+        for(String atv : atividades)
+            this.atividades.add(atv);
     }
 
-    public void setFaturasemi(ArrayList<Fatura> faturasemi) {
-        this.faturasemi = faturasemi;
+    public Empresa(Empresa object){
+        
+        this.atividades = new ArrayList<String>();
+        this.faturas = new ArrayList<String>();
+        this.faturas_obj = new ArrayList<Fatura>();
+
+        this.nif = object.getNIF();
+        this.nome = object.getNome();
+        this.email = object.getEmail();
+        this.morada = object.getMorada();
+        this.password = object.getPassword();
+        this.coeficiente = object.getCoeficiente();
+        this.atividades = object.getAtividades();
+        this.faturas_obj = object.getFaturasObject();
     }
 
-    public float getFatorded() {
-        return fatorded;
-    }
-
-    public void setFatorded(float fatorded) {
-        this.fatorded = fatorded;
-    }
-
-    public ArrayList<Fatura> getFaturasemi() {
-        ArrayList<Fatura> faturas = new ArrayList<>();
-        for(Fatura f: this.faturasemi){
-            faturas.add(new Fatura(f.clone()));
+    //Methods
+    public void associaFatura(Contribuinte cont, Fatura fat){
+        
+        if(! cont.faturas_obj.contains(fat)){
+            cont.faturas_obj.add(fat);
+            fat.setNIFCliente(cont.getNIF());
+            fat.setNIFEmitente(this.getNIF());
+            this.addFaturasObject(fat);
+            
+            if (! cont.faturas.contains(fat.getNumero()))
+                cont.faturas.add(fat.getNumero());
+            
+            if (! this.faturas.contains(fat.getNumero()))
+                this.faturas.add(fat.getNumero());
         }
-        return faturas;
     }
 
-
+    
 }

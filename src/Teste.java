@@ -7,11 +7,12 @@ public class Teste {
 		
 		int[] dep = {123, 321, 555};
 		String[] atv = {"edu", "lazer"};
+		String[] fat = {};
 
 		ArrayList<Contribuinte> cont_out = new ArrayList<Contribuinte>();
-		cont_out.add(new Contribuinte(291306098, "leo", "leo@gmail", "irmas missionarias", "123456", 0.3, dep, atv));
-		cont_out.add(new Contribuinte(501035446, "bruna", "bruna@gmail", "coimbra", "0334563", 0.6, dep, atv));
-		cont_out.add(new Contribuinte(127453216, "mae", "mae@gmail", "poços", "0001263", 0.6, dep, atv));
+		cont_out.add(new Contribuinte(291306098, "leo", "leo@gmail", "irmas missionarias", "123456", 0.3, fat, dep, atv));
+		cont_out.add(new Contribuinte(501035446, "bruna", "bruna@gmail", "coimbra", "0334563", 0.6, fat, dep, atv));
+		cont_out.add(new Contribuinte(127453216, "mae", "mae@gmail", "poços", "0001263", 0.6, fat, dep, atv));
 
 		try {
 			FileOutputStream fileOut = new FileOutputStream("/tmp/cont.ser");
