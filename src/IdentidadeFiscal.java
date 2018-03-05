@@ -10,7 +10,7 @@ public class IdentidadeFiscal implements java.io.Serializable {
     protected double coeficiente;
     protected ArrayList<String> atividades;
     protected ArrayList<String> faturas;
-    protected transient ArrayList<Fatura> faturas_obj;
+    protected ArrayList<Fatura> faturas_obj;
 
     //Methods
     public int getNIF() {

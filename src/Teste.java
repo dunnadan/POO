@@ -4,20 +4,14 @@ import java.util.ArrayList;
 public class Teste {
 	
 	public static void serialize(){
-		
-		int[] dep = {123, 321, 555};
-		String[] atv = {"edu", "lazer"};
-		String[] fat = {};
 
-		ArrayList<Contribuinte> cont_out = new ArrayList<Contribuinte>();
-		cont_out.add(new Contribuinte(291306098, "leo", "leo@gmail", "irmas missionarias", "123456", 0.3, fat, dep, atv));
-		cont_out.add(new Contribuinte(501035446, "bruna", "bruna@gmail", "coimbra", "0334563", 0.6, fat, dep, atv));
-		cont_out.add(new Contribuinte(127453216, "mae", "mae@gmail", "poços", "0001263", 0.6, fat, dep, atv));
+		ArrayList<Fatura> fat_out = new ArrayList<Fatura>();
+		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3, "03/04/2017"));
 
 		try {
-			FileOutputStream fileOut = new FileOutputStream("/tmp/cont.ser");
+			FileOutputStream fileOut = new FileOutputStream("/tmp/fat.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(cont_out);
+			out.writeObject(fat_out);
 			out.close();
 			fileOut.close();
 		}
@@ -27,37 +21,54 @@ public class Teste {
 		}
 	}
 
-	public static void deserialize(){
-		ArrayList<Contribuinte> cont_in = new ArrayList<Contribuinte>();
+	public static ArrayList<Fatura> deserialize(){
+		ArrayList<Fatura> fat_in = new ArrayList<Fatura>();
 
 		try {
-			FileInputStream fileIn = new FileInputStream("/tmp/cont.ser");
+			FileInputStream fileIn = new FileInputStream("/tmp/fat.ser");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			cont_in = (ArrayList<Contribuinte>) in.readObject();
+			fat_in = (ArrayList<Fatura>) in.readObject();
 			in.close();
 			fileIn.close();
 		}
 		
 		catch(IOException i){
 			i.printStackTrace();
-			return;
 		}
 
 		catch(ClassNotFoundException c){
 			c.printStackTrace();
-			return;
 		}
 
 		System.out.println("Deserialized object");
 
-		for (Contribuinte cont : cont_in){
+		for (Fatura fat : fat_in){
 
-			System.out.println("NIF: " + cont.getNIF());
-			System.out.println("Nome: " + cont.getNome());
-			System.out.println("Morada: " + cont.getMorada());
-			System.out.println("Dependentes: " + cont.getDependentes().toString());
-			System.out.println("Atividades: " + cont.getAtividades().toString());
+			System.out.println("Numero: " + fat.getNumero());
+			System.out.println("NIF Emitente: " + fat.getNIFEmitente());
+			System.out.println("NIF Cliente: " + fat.getNIFCliente());
+			System.out.println("Descrição: " + fat.getDescricao());
 			System.out.println();
 		}
+
+		return fat_in;
 	}
+
+	public static ArrayList<Fatura> main(String[] args){
+
+		ArrayList<Fatura> fat_out = new ArrayList<Fatura>();
+		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3, "03/04/2017"));
+
+		DataBase<Fatura> db = new DataBase<Fatura>();
+
+		db.saveData("/tmp/fat.ser", fat_out);
+
+		ArrayList<Fatura> fat_in = db.loadData("/tmp/fat1.ser");
+
+		return fat_in;
+
+	}
+
+	//ArrayList<Fatura> x = DataBase.loadData<Fatura>("/tmp/fat.ser");
+	//x<Fatura> = DataBase.loadData<Fatura>("/tmp/fat.ser");
 }
