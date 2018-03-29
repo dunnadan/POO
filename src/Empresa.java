@@ -1,49 +1,22 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Empresa extends IdentidadeFiscal implements java.io.Serializable {
+public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     //Constructors
     public Empresa(){
+        super();
 
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
     }
 
-    public Empresa(int nif, String nome, String email, String morada, String password, double coeficiente, String[] faturas, String[] atividades){
+    public Empresa(int nif, String nome, String email, String morada, String password, double coeficiente, List<String> faturas, List<String> atividades){
         
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
-
-        this.nif = nif;
-        this.nome = nome;
-        this.email = email;
-        this.morada = morada;
-        this.password = password;
-        this.coeficiente = coeficiente;
-
-        for(String fat : faturas)
-            this.faturas.add(fat);
-
-        for(String atv : atividades)
-            this.atividades.add(atv);
+        super(nif,nome,email,morada,password,coeficiente,faturas,atividades);
     }
 
     public Empresa(Empresa object){
         
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
-
-        this.nif = object.getNIF();
-        this.nome = object.getNome();
-        this.email = object.getEmail();
-        this.morada = object.getMorada();
-        this.password = object.getPassword();
-        this.coeficiente = object.getCoeficiente();
-        this.atividades = object.getAtividades();
-        this.faturas_obj = object.getFaturasObject();
+        super(object);
     }
 
     //Methods
@@ -63,5 +36,7 @@ public class Empresa extends IdentidadeFiscal implements java.io.Serializable {
         }
     }
 
-    
+    public Empresa clone(){
+        return new Empresa(this);
+    }
 }

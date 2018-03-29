@@ -6,19 +6,19 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
 
     //Constructors
     public Contribuinte(){
-        this.atividades = new ArrayList<String>();
-        this.dependentes = new ArrayList<Integer>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
+        this.atividades = new ArrayList<>();
+        this.dependentes = new ArrayList<>();
+        this.faturas = new ArrayList<>();
+        this.faturas_obj = new ArrayList<>();
     }
 
     public Contribuinte(int nif, String nome, String email, String morada, String password, double coeficiente, 
                         String[] faturas, int[] dependentes, String[] atividades){
         
-        this.dependentes = new ArrayList<Integer>();
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
+        this.dependentes = new ArrayList<>();
+        this.atividades = new ArrayList<>();
+        this.faturas = new ArrayList<>();
+        this.faturas_obj = new ArrayList<>();
 
         this.nif = nif;
         this.nome = nome;
@@ -39,10 +39,10 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
 
     public Contribuinte(Contribuinte object){
         
-        this.dependentes = new ArrayList<Integer>();
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
+        this.dependentes = new ArrayList<>();
+        this.atividades = new ArrayList<>();
+        this.faturas = new ArrayList<>();
+        this.faturas_obj = new ArrayList<>();
 
         this.nif = object.getNIF();
         this.nome = object.getNome();
@@ -78,4 +78,7 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
             this.dependentes.remove(dependente);
     }
 
+    public Contribuinte clone(){
+        return new Contribuinte(this);
+    }
 }

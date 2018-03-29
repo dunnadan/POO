@@ -1,6 +1,7 @@
+import java.util.List;
 import java.util.ArrayList;
 
-public class IdentidadeFiscal implements java.io.Serializable {
+public class IdentidadeFiscal  implements java.io.Serializable {
     
     private int nif;
     private String nome;
@@ -8,10 +9,48 @@ public class IdentidadeFiscal implements java.io.Serializable {
     private String morada;
     private String password;
     private double coeficiente;
-    private ArrayList<String> atividades;
-    private ArrayList<String> faturas;
-    private transient ArrayList<Fatura> faturas_obj;
+    private List<String> atividades;
+    private List<String> faturas;
+    private  transient List<Fatura> faturas_obj;
 
+    public IdentidadeFiscal(){}
+
+    public IdentidadeFiscal(int nif, String nome, String email, String morada, String password, double coeficiente, List<String> faturas, List<String> atividades) {
+        this.nif=nif;
+        this.nome=nome;
+        this.email=email;
+        this.morada=morada;
+        this.password=password;
+        this.coeficiente=coeficiente:
+        this.atividades = new ArrayList<String>();
+        this.faturas = new ArrayList<String>();
+        this.faturas_obj = new ArrayList<Fatura>();
+        for(String fat : faturas) {
+            this.faturas.add(fat.clone());
+        }
+
+        for(String atv : atividades) {
+            this.atividades.add(atv.clone());
+        }
+    }
+
+
+    }
+    public IdentidadeFiscal(IdentidadeFiscal object){
+
+        this.atividades = new ArrayList<String>();
+        this.faturas = new ArrayList<String>();
+        this.faturas_obj = new ArrayList<Fatura>();
+
+        this.nif = object.getNIF();
+        this.nome = object.getNome();
+        this.email = object.getEmail();
+        this.morada = object.getMorada();
+        this.password = object.getPassword();
+        this.coeficiente = object.getCoeficiente();
+        this.atividades = object.getAtividades();
+        this.faturas_obj = object.getFaturasObject();
+    }
     //Methods
     public int getNIF() {
         return this.nif;
@@ -61,12 +100,12 @@ public class IdentidadeFiscal implements java.io.Serializable {
         this.coeficiente = coeficiente;
     }
 
-    public ArrayList<String> getAtividades() {
-        return this.atividades;
+    public List<String> getAtividades() {
+        return new ArrayList<>(this.atividades);
     }
 
     public void setAtividades(ArrayList<String> atividades) {
-        this.atividades = atividades;
+        this.atividades = new ArrayList<>(atividades);
     }
 
     public void addAtividades(String atividade){
@@ -78,12 +117,12 @@ public class IdentidadeFiscal implements java.io.Serializable {
             this.atividades.remove(atividade);
     }
 
-    public ArrayList<String> getFaturas(){
-        return this.faturas;
+    public List<String> getFaturas(){
+        return new ArrayList<>(this.faturas);
     }
 
     public void setFaturas(ArrayList<String> faturas){
-        this.faturas = faturas;
+        this.faturas = new ArrayList<>(faturas);
     }
 
     public void addFaturas(String fatura){
@@ -95,12 +134,20 @@ public class IdentidadeFiscal implements java.io.Serializable {
             this.faturas.remove(fatura);
     }
 
-    public ArrayList<Fatura> getFaturasObject(){
-        return this.faturas_obj;
+    public List<Fatura> getFaturasObject(){
+        ArrayList<Fatura> newfaturas_obj = new ArrayList<>();
+        for(Fatura fat : this.faturas_obj) {
+            newfaturas_obj.add(fat.clone());
+        }
+        return newfaturas_obj;
     }
 
-    public void setFaturasObject(ArrayList<Fatura> faturas_obj){
-        this.faturas_obj = faturas_obj;
+    public void setFaturasObject(ArrayList<Fatura> faturas_obj) {
+        ArrayList<Fatura> newfaturas_obj = new ArrayList<>();
+        for (Fatura fat : faturas_obj) {
+            newfaturas_obj.add(fat.clone());
+            this.faturas_obj = newfaturas_obj;
+        }
     }
 
     public void addFaturasObject(Fatura object){
@@ -116,4 +163,9 @@ public class IdentidadeFiscal implements java.io.Serializable {
     public boolean auth(String password){
         return (this.password == password);
     }
+
+    public IdentidadeFiscal clone(){
+        return new IdentidadeFiscal(this);
+    }
+
 }

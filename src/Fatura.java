@@ -107,4 +107,7 @@ public class Fatura implements java.io.Serializable {
         this.valor = valor;
     }
 
+    public Fatura clone(){
+        return new Fatura(this);
+    }
 }
