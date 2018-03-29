@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class IdentidadeFiscal  implements java.io.Serializable {
     
-<<<<<<< HEAD
+
     private int nif;
     private String nome;
     private String email;
@@ -13,17 +13,7 @@ public class IdentidadeFiscal  implements java.io.Serializable {
     private List<String> atividades;
     private List<String> faturas;
     private  transient List<Fatura> faturas_obj;
-=======
-    protected int nif;
-    protected String nome;
-    protected String email;
-    protected String morada;
-    protected String password;
-    protected double coeficiente;
-    protected ArrayList<String> atividades;
-    protected ArrayList<String> faturas;
-    protected ArrayList<Fatura> faturas_obj;
->>>>>>> 19fd7e520a7ba9a3cfdd010febc2fa24a7d1719a
+
 
     public IdentidadeFiscal(){}
 
@@ -33,7 +23,7 @@ public class IdentidadeFiscal  implements java.io.Serializable {
         this.email=email;
         this.morada=morada;
         this.password=password;
-        this.coeficiente=coeficiente:
+        this.coeficiente=coeficiente;
         this.atividades = new ArrayList<String>();
         this.faturas = new ArrayList<String>();
         this.faturas_obj = new ArrayList<Fatura>();
