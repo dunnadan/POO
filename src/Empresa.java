@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     //Constructors
     public Empresa(){
-        super();
+
 
     }
 
@@ -38,5 +39,20 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     public Empresa clone(){
         return new Empresa(this);
+    }
+
+    public double compareTo(Fatura compareFatura) {
+
+        double compareQuantity = ((Fatura) compareFatura).getValor();
+
+        //ascending order
+        return super(valor) - compareQuantity;
+
+    public double listaFaturas(ArrayList<Fatura> faturas){
+        List<Fatura> newfat = new ArrayList<>();
+        double max=0;
+        for (Fatura ft: newfat ){
+            if(ft.getValor()>max) max=ft.getValor();
+        }
     }
 }
