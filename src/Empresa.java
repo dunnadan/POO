@@ -1,5 +1,5 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
@@ -10,9 +10,16 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     }
 
-    public Empresa(int nif, String nome, String email, String morada, String password, double coeficiente, List<String> faturas, List<String> atividades){
+    public Empresa(int nif,
+                   String nome,
+                   String email,
+                   String morada,
+                   String password,
+                   double coeficiente,
+                   List<String> atividades,
+                   List<Fatura> faturas ){
         
-        super(nif,nome,email,morada,password,coeficiente,faturas,atividades);
+        super(nif,nome,email,morada,password,coeficiente, atividades,faturas);
     }
 
     public Empresa(Empresa object){
@@ -21,38 +28,43 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
     }
 
     //Methods
-    public void associaFatura(Contribuinte cont, Fatura fat){
-        
-        if(! cont.faturas_obj.contains(fat)){
-            cont.faturas_obj.add(fat);
-            fat.setNIFCliente(cont.getNIF());
-            fat.setNIFEmitente(this.getNIF());
-            this.addFaturasObject(fat);
-            
-            if (! cont.faturas.contains(fat.getNumero()))
-                cont.faturas.add(fat.getNumero());
-            
-            if (! this.faturas.contains(fat.getNumero()))
-                this.faturas.add(fat.getNumero());
+    public double totalFaturado(List<Fatura> faturas){
+
+        double valor = 0 ;
+
+        for(Fatura fat : faturas) {
+            valor += fat.getValor();
         }
+        return valor;
     }
 
+    public double totalFaturadoTempo(List<Fatura> faturas, LocalDateTime inicio, LocalDateTime fim){
+
+        ArrayList<Fatura> faturaAux = new ArrayList<>();
+
+        for (Fatura fat : faturas){
+            if(fat.getData().isBefore(fim) && fat.getData().isAfter(inicio)) {
+                faturaAux.add(fat);
+            }
+        }
+        return totalFaturado(faturaAux);
+    }
+
+    @Override
     public Empresa clone(){
         return new Empresa(this);
     }
 
-    public double compareTo(Fatura compareFatura) {
+    public Fatura makeFatura(String numero,
+                             int nif_emitente,
+                             int nif_cliente,
+                             String tipo,
+                             String descricao,
+                             String atividade,
+                             double valor){
 
-        double compareQuantity = ((Fatura) compareFatura).getValor();
+        Fatura fatura = new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
 
-        //ascending order
-        return super(valor) - compareQuantity;
-
-    public double listaFaturas(ArrayList<Fatura> faturas){
-        List<Fatura> newfat = new ArrayList<>();
-        double max=0;
-        for (Fatura ft: newfat ){
-            if(ft.getValor()>max) max=ft.getValor();
-        }
+        return fatura;
     }
 }

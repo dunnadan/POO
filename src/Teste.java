@@ -6,7 +6,7 @@ public class Teste {
 	public static void serialize(){
 
 		ArrayList<Fatura> fat_out = new ArrayList<Fatura>();
-		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3, "03/04/2017"));
+		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3));
 
 		try {
 			FileOutputStream fileOut = new FileOutputStream("/tmp/fat.ser");
@@ -57,7 +57,7 @@ public class Teste {
 	public static ArrayList<Fatura> main(String[] args){
 
 		ArrayList<Fatura> fat_out = new ArrayList<Fatura>();
-		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3, "03/04/2017"));
+		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3));
 
 		DataBase<Fatura> db = new DataBase<Fatura>();
 

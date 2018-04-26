@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Fatura extends IdentidadeFiscal implements java.io.Serializable {
@@ -10,14 +11,14 @@ public class Fatura extends IdentidadeFiscal implements java.io.Serializable {
     private String descricao;
     private String atividade;
     private double valor;
-    private LocalDate data;
+    private LocalDateTime data;
 
     //Constructors
     public Fatura(){
 
     }
 
-    public Fatura(String numero, int nif_emitente, int nif_cliente, String tipo, String descricao, String atividade, double valor, String data){
+    public Fatura(String numero, int nif_emitente, int nif_cliente, String tipo, String descricao, String atividade, double valor){
 
         this.numero = numero;
         this.nif_emitente = nif_emitente;
@@ -26,7 +27,7 @@ public class Fatura extends IdentidadeFiscal implements java.io.Serializable {
         this.descricao = descricao;
         this.atividade = atividade;
         this.valor = valor;
-        this.data = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.data = LocalDateTime.now();
     }
 
     public Fatura(Fatura object){
@@ -67,11 +68,11 @@ public class Fatura extends IdentidadeFiscal implements java.io.Serializable {
         this.tipo = tipo;
     }
 
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return this.data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
@@ -107,6 +108,7 @@ public class Fatura extends IdentidadeFiscal implements java.io.Serializable {
         this.valor = valor;
     }
 
+    @Override
     public Fatura clone(){
         return new Fatura(this);
     }

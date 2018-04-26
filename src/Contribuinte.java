@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Contribuinte extends IdentidadeFiscal implements java.io.Serializable {
     
@@ -6,53 +8,31 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
 
     //Constructors
     public Contribuinte(){
-        this.atividades = new ArrayList<>();
-        this.dependentes = new ArrayList<>();
-        this.faturas = new ArrayList<>();
-        this.faturas_obj = new ArrayList<>();
+
     }
 
-    public Contribuinte(int nif, String nome, String email, String morada, String password, double coeficiente, 
-                        String[] faturas, int[] dependentes, String[] atividades){
-        
-        this.dependentes = new ArrayList<>();
-        this.atividades = new ArrayList<>();
-        this.faturas = new ArrayList<>();
-        this.faturas_obj = new ArrayList<>();
+    public Contribuinte(int nif, String nome,
+                        String email,
+                        String morada,
+                        String password,
+                        double coeficiente,
+                        List<Fatura> faturas,
+                        int[] dependentes,
+                        List<String> atividades) {
 
-        this.nif = nif;
-        this.nome = nome;
-        this.email = email;
-        this.morada = morada;
-        this.password = password;
-        this.coeficiente = coeficiente;
 
-        for(String fat : faturas)
-            this.faturas.add(fat);
+        super(nif, nome, email, morada, password, coeficiente, atividades, faturas);
 
-        for(int dep : dependentes)
+        for (int dep : dependentes)
             this.dependentes.add(dep);
-
-        for(String atv : atividades)
-            this.atividades.add(atv);
     }
 
     public Contribuinte(Contribuinte object){
-        
-        this.dependentes = new ArrayList<>();
-        this.atividades = new ArrayList<>();
-        this.faturas = new ArrayList<>();
-        this.faturas_obj = new ArrayList<>();
 
-        this.nif = object.getNIF();
-        this.nome = object.getNome();
-        this.email = object.getEmail();
-        this.morada = object.getMorada();
-        this.password = object.getPassword();
-        this.coeficiente = object.getCoeficiente();
+        super(object);
+        this.dependentes = new ArrayList<>();
         this.dependentes = object.getDependentes();
-        this.atividades = object.getAtividades();
-        this.faturas_obj = object.getFaturasObject();
+
     }
 
 
@@ -79,6 +59,6 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
     }
 
     public Contribuinte clone(){
-        return new Contribuinte(this);
+        return new Contribuinte( this);
     }
 }

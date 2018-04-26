@@ -1,8 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class IdentidadeFiscal  implements java.io.Serializable {
-    
+public class IdentidadeFiscal implements java.io.Serializable {
+
 
     private int nif;
     private String nome;
@@ -11,39 +11,41 @@ public class IdentidadeFiscal  implements java.io.Serializable {
     private String password;
     private double coeficiente;
     private List<String> atividades;
-    private List<String> faturas;
-    private  transient List<Fatura> faturas_obj;
+    private List<Fatura> faturas;
+    // private  transient List<Fatura> faturas_obj;
 
 
-    public IdentidadeFiscal(){}
+    public IdentidadeFiscal() {
+    }
 
-    public IdentidadeFiscal(int nif, String nome, String email, String morada, String password, double coeficiente, List<String> faturas, List<String> atividades) {
-        this.nif=nif;
-        this.nome=nome;
-        this.email=email;
-        this.morada=morada;
-        this.password=password;
-        this.coeficiente=coeficiente;
+    public IdentidadeFiscal(int nif, String nome, String email, String morada,
+                            String password, double coeficiente,
+                            List<String> atividades, List<Fatura> fatura) {
+
+        this.nif = nif;
+        this.nome = nome;
+        this.email = email;
+        this.morada = morada;
+        this.password = password;
+        this.coeficiente = coeficiente;
         this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
-        for(String fat : faturas) {
+        this.faturas = new ArrayList<Fatura>();
+
+        for (Fatura fat : faturas) {
             this.faturas.add(fat.clone());
         }
 
-        for(String atv : atividades) {
-            this.atividades.add(atv.clone());
+        for (String atv : atividades) {
+            this.atividades.add(atv);
         }
     }
 
 
-    }
-    public IdentidadeFiscal(IdentidadeFiscal object){
+    public IdentidadeFiscal(IdentidadeFiscal object) {
 
         this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<String>();
-        this.faturas_obj = new ArrayList<Fatura>();
-
+        this.faturas = new ArrayList<Fatura>();
+        //this.faturas_obj = new ArrayList<Fatura>();
         this.nif = object.getNIF();
         this.nome = object.getNome();
         this.email = object.getEmail();
@@ -51,8 +53,9 @@ public class IdentidadeFiscal  implements java.io.Serializable {
         this.password = object.getPassword();
         this.coeficiente = object.getCoeficiente();
         this.atividades = object.getAtividades();
-        this.faturas_obj = object.getFaturasObject();
+        //this.faturas_obj = object.getFaturasObject();
     }
+
     //Methods
     public int getNIF() {
         return this.nif;
@@ -110,16 +113,16 @@ public class IdentidadeFiscal  implements java.io.Serializable {
         this.atividades = new ArrayList<>(atividades);
     }
 
-    public void addAtividades(String atividade){
+    public void addAtividades(String atividade) {
         this.atividades.add(atividade);
     }
 
-    public void removeAtividades(String atividade){
+    public void removeAtividades(String atividade) {
         if (this.atividades.contains(atividade))
             this.atividades.remove(atividade);
     }
 
-    public List<String> getFaturas(){
+    /*public List<String> getFaturas(){
         return new ArrayList<>(this.faturas);
     }
 
@@ -135,39 +138,82 @@ public class IdentidadeFiscal  implements java.io.Serializable {
         if (this.faturas.contains(fatura))
             this.faturas.remove(fatura);
     }
+*/
 
-    public List<Fatura> getFaturasObject(){
-        ArrayList<Fatura> newfaturas_obj = new ArrayList<>();
-        for(Fatura fat : this.faturas_obj) {
-            newfaturas_obj.add(fat.clone());
+    public List<Fatura> getFaturas() {
+        ArrayList<Fatura> newfaturas = new ArrayList<>();
+        for (Fatura fat : this.faturas) {
+            newfaturas.add(fat.clone());
         }
-        return newfaturas_obj;
+        return newfaturas;
     }
 
+
     public void setFaturasObject(ArrayList<Fatura> faturas_obj) {
+
         ArrayList<Fatura> newfaturas_obj = new ArrayList<>();
         for (Fatura fat : faturas_obj) {
             newfaturas_obj.add(fat.clone());
-            this.faturas_obj = newfaturas_obj;
+            this.faturas = newfaturas_obj;
         }
     }
 
-    public void addFaturasObject(Fatura object){
-        this.faturas_obj.add(object);
+    public void addFaturasObject(Fatura object) {
+
+        this.faturas.add(object);
     }
 
-    public void removeFaturasObject(Fatura fatura){
-        if (this.faturas_obj.contains(fatura))
-            this.faturas_obj.remove(fatura);
+    public void removeFaturasObject(Fatura fatura) {
+
+        if (this.faturas.contains(fatura))
+            this.faturas.remove(fatura);
     }
 
     //usaremos para autenticar uma identidade fiscal na hora de logar na app
-    public boolean auth(String password){
-        return (this.password == password);
+    public boolean auth(String password) {
+
+        return (this.password.equals(password));
     }
 
-    public IdentidadeFiscal clone(){
+    @Override
+    public IdentidadeFiscal clone() {
+
         return new IdentidadeFiscal(this);
     }
 
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if ((o == null) || this.getClass() != o.getClass()) return false;
+
+        IdentidadeFiscal idFiscal = (IdentidadeFiscal) o;
+
+        return (this.nif == (idFiscal.getNIF()) && this.nome.equals(idFiscal.getNome())
+                && this.email.equals(idFiscal.getEmail())
+                && this.morada.equals(idFiscal.getMorada()) && this.password.equals(idFiscal.getPassword())
+                && this.coeficiente == idFiscal.getCoeficiente() && this.atividades.equals(idFiscal.getAtividades())
+                && this.faturas.equals(idFiscal.getFaturas()));
+    }
+
+    @Override
+    public String toString() {
+
+
+        return "NIF: " +
+                this.nif + "\n" +
+                "Nome: " +
+                this.nome + "\n" +
+                "Password: " +
+                this.password + "\n" +
+                "Morada: " +
+                this.morada + "\n" +
+                "Email: " +
+                this.email + "\n" +
+                "Coeficiente: " +
+                this.coeficiente + "\n" +
+                "Atividade: " +
+                this.atividades.toString() + "\n" +
+                "Faturas: " +
+                this.faturas.toString();
+    }
 }
