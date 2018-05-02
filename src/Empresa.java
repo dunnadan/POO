@@ -63,8 +63,44 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
                              String atividade,
                              double valor){
 
-        Fatura fatura = new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
+        return new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
+    }
 
-        return fatura;
+   public List<Fatura> faturasContribuinte(Empresa empresa, Contribuinte contribuinte){
+
+        List<Fatura> aux = new ArrayList<>();
+
+
+        for (Fatura fatura : empresa.getFaturas()){
+            if(fatura.getNIFCliente()==contribuinte.getNIF()){
+                aux.add(fatura);
+            }
+
+        }
+       return  aux;
+   }
+
+   public List<Fatura> faturasContribuinteValor(Empresa empresa, Contribuinte contribuinte){
+
+       List<Fatura> l = faturasContribuinte(empresa,contribuinte);
+       l.sort(new FaturaComparatorValor());
+
+       return l;
+   }
+
+    public List<Fatura> faturasContribuinteData(Empresa empresa, Contribuinte contribuinte){
+
+       List<Fatura> l = faturasContribuinte(empresa, contribuinte);
+       l.sort(new FaturaComparatorData());
+
+       return l;
+    }
+
+    public List<Fatura> faturasEmpresaValor(Empresa empresa){
+
+        List<Fatura> l = empresa.getFaturas();
+        l.sort(new FaturaComparatorValor());
+
+        return l;
     }
 }
