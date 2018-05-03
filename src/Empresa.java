@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
@@ -66,39 +67,30 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
     }
 
-   public List<Fatura> faturasContribuinte(Empresa empresa, Contribuinte contribuinte){
+   public List<Fatura> faturasContribuinte(int nif){
+        return this.getFaturas().stream()
+                .filter(f -> f.getNIFCliente() == nif)
+                .collect(Collectors.toList());
+    }
 
-        List<Fatura> aux = new ArrayList<>();
-
-
-        for (Fatura fatura : empresa.getFaturas()){
-            if(fatura.getNIFCliente()==contribuinte.getNIF()){
-                aux.add(fatura);
-            }
-
-        }
-       return  aux;
-   }
-
-   public List<Fatura> faturasContribuinteValor(Empresa empresa, Contribuinte contribuinte){
-
-       List<Fatura> l = faturasContribuinte(empresa,contribuinte);
+   public List<Fatura> faturasContribuinteValor(int nif){
+       List<Fatura> l = this.faturasContribuinte(nif);
        l.sort(new FaturaComparatorValor());
-
        return l;
    }
 
-    public List<Fatura> faturasContribuinteData(Empresa empresa, Contribuinte contribuinte){
+    public List<Fatura> faturasContribuinteData(int nif){
 
-       List<Fatura> l = faturasContribuinte(empresa, contribuinte);
+       List<Fatura> l = this.faturasContribuinte(nif);
        l.sort(new FaturaComparatorData());
 
        return l;
     }
 
-    public List<Fatura> faturasEmpresaValor(Empresa empresa){
+    //retorna as faturas de uma empresa ordenadas por valor
+    public List<Fatura> faturasEmpresaValor(){
 
-        List<Fatura> l = empresa.getFaturas();
+        List<Fatura> l = this.getFaturas();
         l.sort(new FaturaComparatorValor());
 
         return l;
