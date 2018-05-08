@@ -16,6 +16,15 @@ public class Fatura extends IdentidadeFiscal implements java.io.Serializable {
     //Constructors
     public Fatura(){
 
+        this.numero = "";
+        this.nif_emitente = 0;
+        this.nif_cliente = 0;
+        this.tipo = "";
+        this.descricao = "";
+        this.atividade = "";
+        this.valor = 0;
+        this.data = LocalDateTime.now();
+
     }
 
     public Fatura(String numero, int nif_emitente, int nif_cliente, String tipo, String descricao, String atividade, double valor){

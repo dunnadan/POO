@@ -4,11 +4,13 @@ import java.util.List;
 
 public class Contribuinte extends IdentidadeFiscal implements java.io.Serializable {
     
-    private ArrayList<Integer> dependentes;
+    private List<Integer> dependentes;
 
     //Constructors
     public Contribuinte(){
 
+        super();
+        this.dependentes = new ArrayList<>();
     }
 
     public Contribuinte(int nif, String nome,
@@ -37,8 +39,8 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
 
 
     //Methods
-    public ArrayList<Integer> getDependentes() {
-        return this.dependentes;
+    public List<Integer> getDependentes() {
+        return new ArrayList<>(this.dependentes);
     }
 
     public void setDependentes(ArrayList<Integer> dependentes) {

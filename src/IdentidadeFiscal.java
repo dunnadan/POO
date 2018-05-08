@@ -149,7 +149,7 @@ public class IdentidadeFiscal implements java.io.Serializable {
 */
 
     public List<Fatura> getFaturas() {
-        ArrayList<Fatura> newfaturas = new ArrayList<>();
+        List<Fatura> newfaturas = new ArrayList<>();
         for (Fatura fat : this.faturas) {
             newfaturas.add(fat.clone());
         }
