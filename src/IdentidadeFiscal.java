@@ -12,10 +12,18 @@ public class IdentidadeFiscal implements java.io.Serializable {
     private double coeficiente;
     private List<String> atividades;
     private List<Fatura> faturas;
-    // private  transient List<Fatura> faturas_obj;
+
 
 
     public IdentidadeFiscal() {
+        this.nif = 0;
+        this.nome = "";
+        this.email = "";
+        this.morada = "";
+        this.password = "";
+        this.coeficiente = 0;
+        this.atividades = new ArrayList<String>();
+        this.faturas = new ArrayList<Fatura>();
     }
 
     public IdentidadeFiscal(int nif, String nome, String email, String morada,
