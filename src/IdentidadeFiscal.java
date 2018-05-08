@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class IdentidadeFiscal implements java.io.Serializable {
+public abstract class IdentidadeFiscal implements java.io.Serializable {
 
 
     private int nif;
@@ -184,10 +184,8 @@ public class IdentidadeFiscal implements java.io.Serializable {
     }
 
     @Override
-    public IdentidadeFiscal clone() {
+    public abstract IdentidadeFiscal clone();
 
-        return new IdentidadeFiscal(this);
-    }
 
     public boolean equals(Object o) {
 
