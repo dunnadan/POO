@@ -10,7 +10,7 @@ public abstract class Atividade {
 
 
     //methods
-    
+
     public String getNome(){
         return this.nome;
     }
