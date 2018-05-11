@@ -1,9 +1,13 @@
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class DataBase<T> {
+public class DataBase {
 	
-	public static <T> void saveData(String filePath, ArrayList<T> sourceList){
+	public static <E> void saveData(String filePath, ArrayList<E> sourceList){
 
 		try {
 			FileOutputStream fileOut = new FileOutputStream(filePath);
@@ -18,14 +22,14 @@ public class DataBase<T> {
 		}
 	}
 
-	public static <T> ArrayList<T> loadData(String filePath){
+	public static <E> ArrayList<E> loadData(String filePath){
 
-		ArrayList<T> sourceList = new ArrayList<T>();
+		ArrayList<E> sourceList = new ArrayList<E>();
 
 		try {
 			FileInputStream fileIn = new FileInputStream(filePath);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			sourceList = (ArrayList<T>) in.readObject();
+			sourceList = (ArrayList<E>) in.readObject();
 			in.close();
 			fileIn.close();
 		}	
@@ -40,28 +44,4 @@ public class DataBase<T> {
 
 		return sourceList;
 	}
-
-	public static void printObject(ArrayList<Contribuinte> source_list){
-
-
-
-		for (Contribuinte obj : source_list){
-
-			System.out.println("NIF: " + obj.getNIF());
-			System.out.println("Nome: " + obj.getNome());
-			System.out.println("Morada: " + obj.getMorada());
-			System.out.println("Dependentes: " + obj.getDependentes().toString());
-			System.out.println("Atividades: " + obj.getAtividades().toString());
-			System.out.println();
-		}
-	}
-
-	public static ArrayList<Fatura> main(String[] args){
-
-		ArrayList<Fatura> x = loadData("/tmp/fat.ser");
-
-		return x;
-
-	}
-
 }

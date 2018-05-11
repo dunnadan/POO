@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Contribuinte extends IdentidadeFiscal implements java.io.Serializable {
     
+    private static final long serialVersionUID = 1L;
     private List<Integer> dependentes;
 
 
@@ -60,7 +61,7 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
     }
 
     public void addDependente(int dependente){
-        dependentes.add(dependente);
+        this.dependentes.add(dependente);
     }
 
     public void removeDependente(int dependente){
@@ -69,6 +70,6 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
     }
 
     public Contribuinte clone(){
-        return new Contribuinte( this);
+        return new Contribuinte(this);
     }
 }

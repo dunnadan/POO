@@ -4,7 +4,8 @@ import java.util.ArrayList;
 public abstract class IdentidadeFiscal implements java.io.Serializable {
 
 
-    private int nif;
+    private static final long serialVersionUID = 1L;
+	private int nif;
     private String nome;
     private String email;
     private String morada;
@@ -29,6 +30,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
     public IdentidadeFiscal(int nif, String nome, String email, String morada,
                             String password, double coeficiente,
                             List<String> atividades, List<Fatura> fatura) {
+                                
 
         this.nif = nif;
         this.nome = nome;
@@ -53,7 +55,6 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
 
         this.atividades = new ArrayList<String>();
         this.faturas = new ArrayList<Fatura>();
-        //this.faturas_obj = new ArrayList<Fatura>();
         this.nif = object.getNIF();
         this.nome = object.getNome();
         this.email = object.getEmail();
@@ -61,7 +62,6 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.password = object.getPassword();
         this.coeficiente = object.getCoeficiente();
         this.atividades = object.getAtividades();
-        //this.faturas_obj = object.getFaturasObject();
     }
 
     //Methods
@@ -130,24 +130,6 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
             this.atividades.remove(atividade);
     }
 
-    /*public List<String> getFaturas(){
-        return new ArrayList<>(this.faturas);
-    }
-
-    public void setFaturas(ArrayList<String> faturas){
-        this.faturas = new ArrayList<>(faturas);
-    }
-
-    public void addFaturas(String fatura){
-        this.faturas.add(fatura);
-    }
-
-    public void removeFaturas(String fatura){
-        if (this.faturas.contains(fatura))
-            this.faturas.remove(fatura);
-    }
-*/
-
     public List<Fatura> getFaturas() {
         List<Fatura> newfaturas = new ArrayList<>();
         for (Fatura fat : this.faturas) {
@@ -156,22 +138,23 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         return newfaturas;
     }
 
+    public void setFaturas(ArrayList<Fatura> faturas) {
 
-    public void setFaturasObject(ArrayList<Fatura> faturas_obj) {
-
-        ArrayList<Fatura> newfaturas_obj = new ArrayList<>();
-        for (Fatura fat : faturas_obj) {
-            newfaturas_obj.add(fat.clone());
-            this.faturas = newfaturas_obj;
+        ArrayList<Fatura> newfaturas = new ArrayList<>();
+        
+        for (Fatura fat : faturas) {
+            newfaturas.add(fat.clone());
         }
+            
+        this.faturas = newfaturas;
     }
 
-    public void addFaturasObject(Fatura object) {
+    public void addFaturas(Fatura object) {
 
         this.faturas.add(object);
     }
 
-    public void removeFaturasObject(Fatura fatura) {
+    public void removeFaturas(Fatura fatura) {
 
         if (this.faturas.contains(fatura))
             this.faturas.remove(fatura);
@@ -185,7 +168,6 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
 
     @Override
     public abstract IdentidadeFiscal clone();
-
 
     public boolean equals(Object o) {
 
@@ -205,21 +187,13 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
     public String toString() {
 
 
-        return "NIF: " +
-                this.nif + "\n" +
-                "Nome: " +
-                this.nome + "\n" +
-                "Password: " +
-                this.password + "\n" +
-                "Morada: " +
-                this.morada + "\n" +
-                "Email: " +
-                this.email + "\n" +
-                "Coeficiente: " +
-                this.coeficiente + "\n" +
-                "Atividade: " +
-                this.atividades.toString() + "\n" +
-                "Faturas: " +
-                this.faturas.toString();
+        return "NIF: " + this.nif + "\n" +
+                "Nome: " + this.nome + "\n" +
+                "Password: " + this.password + "\n" +
+                "Morada: " + this.morada + "\n" +
+                "Email: " + this.email + "\n" +
+                "Coeficiente: " + this.coeficiente + "\n" +
+                "Atividade: " + this.atividades.toString() + "\n" +
+                "Faturas: " + this.faturas.toString();
     }
 }

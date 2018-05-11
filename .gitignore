@@ -5,6 +5,7 @@
 
 # Log file
 *.log
+logfile.txt
 
 # BlueJ files
 *.ctxt

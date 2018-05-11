@@ -4,7 +4,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Fatura implements java.io.Serializable {
 
-    private String numero;
+    private static final long serialVersionUID = 1L;
+	private String numero;
     private int nif_emitente;
     private int nif_cliente;
     private String tipo;

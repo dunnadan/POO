@@ -5,7 +5,9 @@ import java.util.stream.Collectors;
 
 public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
-    //Constructors
+    private static final long serialVersionUID = 1L;
+
+	//Constructors
     public Empresa(){
 
 
