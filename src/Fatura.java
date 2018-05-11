@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Fatura extends IdentidadeFiscal implements java.io.Serializable {
+public class Fatura implements java.io.Serializable {
 
     private String numero;
     private int nif_emitente;
