@@ -7,7 +7,20 @@ public abstract class Atividade {
     private String nome;
     private Boolean deduct; //diz se deduz ou não valor fiscal
 
+    public Atividade(String nome, Boolean deduct){
+        this.nome = nome;
+        this.deduct = deduct;
+    }
 
+    public Atividade(){
+        this.nome = "";
+        this.deduct = false;
+    }
+
+    public  Atividade(Atividade object){
+        this.nome = object.getNome();
+        this.deduct = object.getDeduct();
+    }
 
     //methods
 
