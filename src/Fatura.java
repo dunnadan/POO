@@ -10,7 +10,7 @@ public class Fatura implements java.io.Serializable {
     private int nif_cliente;
     private String tipo;
     private String descricao;
-    private String atividade;
+    private Atividade atividade;
     private double valor;
     private LocalDateTime data;
 
@@ -22,13 +22,13 @@ public class Fatura implements java.io.Serializable {
         this.nif_cliente = 0;
         this.tipo = "";
         this.descricao = "";
-        this.atividade = "";
+        this.atividade = null;
         this.valor = 0;
         this.data = LocalDateTime.now();
 
     }
 
-    public Fatura(String numero, int nif_emitente, int nif_cliente, String tipo, String descricao, String atividade, double valor){
+    public Fatura(String numero, int nif_emitente, int nif_cliente, String tipo, String descricao, Atividade atividade, double valor){
 
         this.numero = numero;
         this.nif_emitente = nif_emitente;
@@ -102,11 +102,11 @@ public class Fatura implements java.io.Serializable {
         this.descricao = descricao;
     }
 
-    public String getAtividade() {
+    public Atividade getAtividade() {
         return this.atividade;
     }
 
-    public void setAtividade(String atividade) {
+    public void setAtividade(Atividade atividade) {
         this.atividade = atividade;
     }
 

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Teste {
 
-	public static ArrayList<Fatura> main(String[] args){
+/*	public static ArrayList<Fatura> main(String[] args){
 
 		ArrayList<Fatura> fat_out = new ArrayList<Fatura>();
 		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3));
@@ -15,4 +15,5 @@ public class Teste {
 		return fat_in;
 
 	}
+	*/
 }

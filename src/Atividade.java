@@ -39,8 +39,6 @@ public abstract class Atividade {
     }
 
 
-
-
     //Nao ha setter para o deduct, porque isso e uma caracteristica de cada atividade
     //que nao pode ser alterada.
 }

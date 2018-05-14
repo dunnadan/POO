@@ -27,7 +27,7 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
                         double coeficiente,
                         List<Fatura> faturas,
                         int[] dependentes,
-                        List<String> atividades) {
+                        List<Atividade> atividades) {
 
 
         super(nif, nome, email, morada, password, coeficiente, atividades, faturas);

@@ -22,7 +22,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
                    List<String> atividades,
                    List<Fatura> faturas ){
         
-        super(nif,nome,email,morada,password,coeficiente, atividades,faturas);
+       //TODO super(nif,nome,email,morada,password,coeficiente, atividades,faturas);
     }
 
     public Empresa(Empresa object){
@@ -65,8 +65,9 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
                              String descricao,
                              String atividade,
                              double valor){
+        return null;
 
-        return new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
+        //TODO return new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
     }
 
    public List<Fatura> faturasContribuinte(int nif){

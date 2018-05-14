@@ -11,7 +11,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
     private String morada;
     private String password;
     private double coeficiente;
-    private List<String> atividades;
+    private List<Atividade> atividades;
     private List<Fatura> faturas;
 
 
@@ -23,14 +23,14 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.morada = "";
         this.password = "";
         this.coeficiente = 0;
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<Fatura>();
+        this.atividades = new ArrayList<>();
+        this.faturas = new ArrayList<>();
     }
 
     public IdentidadeFiscal(int nif, String nome, String email, String morada,
                             String password, double coeficiente,
-                            List<String> atividades, List<Fatura> fatura) {
-                                
+                            List<Atividade> atividades, List<Fatura> fatura) {
+
 
         this.nif = nif;
         this.nome = nome;
@@ -38,14 +38,14 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.morada = morada;
         this.password = password;
         this.coeficiente = coeficiente;
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<Fatura>();
+        this.atividades = new ArrayList<>();
+        this.faturas = new ArrayList<>();
 
         for (Fatura fat : faturas) {
             this.faturas.add(fat.clone());
         }
 
-        for (String atv : atividades) {
+        for (Atividade atv : atividades) {
             this.atividades.add(atv);
         }
     }
@@ -53,15 +53,15 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
 
     public IdentidadeFiscal(IdentidadeFiscal object) {
 
-        this.atividades = new ArrayList<String>();
-        this.faturas = new ArrayList<Fatura>();
+        this.atividades = new ArrayList<>();
+        this.faturas = new ArrayList<>();
         this.nif = object.getNIF();
         this.nome = object.getNome();
         this.email = object.getEmail();
         this.morada = object.getMorada();
         this.password = object.getPassword();
         this.coeficiente = object.getCoeficiente();
-        this.atividades = object.getAtividades();
+        this.atividades = object.clone().getAtividades();
     }
 
     //Methods
@@ -113,19 +113,19 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.coeficiente = coeficiente;
     }
 
-    public List<String> getAtividades() {
+    public List<Atividade> getAtividades() {
         return new ArrayList<>(this.atividades);
     }
 
-    public void setAtividades(ArrayList<String> atividades) {
+    public void setAtividades(ArrayList<Atividade> atividades) {
         this.atividades = new ArrayList<>(atividades);
     }
 
-    public void addAtividades(String atividade) {
+    public void addAtividades(Atividade atividade) {
         this.atividades.add(atividade);
     }
 
-    public void removeAtividades(String atividade) {
+    public void removeAtividades(Atividade atividade) {
         if (this.atividades.contains(atividade))
             this.atividades.remove(atividade);
     }
@@ -141,11 +141,11 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
     public void setFaturas(ArrayList<Fatura> faturas) {
 
         ArrayList<Fatura> newfaturas = new ArrayList<>();
-        
+
         for (Fatura fat : faturas) {
             newfaturas.add(fat.clone());
         }
-            
+
         this.faturas = newfaturas;
     }
 
