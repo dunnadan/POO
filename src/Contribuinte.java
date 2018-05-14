@@ -11,15 +11,12 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
 
     //Constructors
 
-    //Construtor vazio
     public Contribuinte(){
 
         super();
         this.dependentes = new ArrayList<>();
     }
 
-
-    //Construtor parameterizado
     public Contribuinte(int nif, String nome,
                         String email,
                         String morada,
@@ -36,8 +33,6 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
             this.dependentes.add(dep);
     }
 
-
-    //Construtor de copia
     public Contribuinte(Contribuinte object){
 
         super(object);

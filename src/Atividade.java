@@ -3,9 +3,11 @@
 
 public abstract class Atividade {
 
-
     private String nome;
     private Boolean deduct; //diz se deduz ou não valor fiscal
+
+
+    //CONSTRUCTORS
 
     public Atividade(String nome, Boolean deduct){
         this.nome = nome;
@@ -22,21 +24,23 @@ public abstract class Atividade {
         this.deduct = object.getDeduct();
     }
 
-    //methods
+
+
+    //METHODS
 
     public String getNome(){
         return this.nome;
     }
 
-
     public void setNome(String name){
         this.nome = name;   //Correto???
     }
 
-
     public Boolean getDeduct(){   //Clone boolean???
         return this.deduct;
     }
+
+    public abstract double deduct(Fatura f); //sera especificado em cada uma das subclasses
 
 
     //Nao ha setter para o deduct, porque isso e uma caracteristica de cada atividade

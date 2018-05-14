@@ -45,9 +45,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
             this.faturas.add(fat.clone());
         }
 
-        for (Atividade atv : atividades) {
-            this.atividades.add(atv);
-        }
+        this.atividades.addAll(atividades);
     }
 
 
