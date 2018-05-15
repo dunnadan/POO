@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class DataBase {
 	
-	public static <E> void saveData(String filePath, ArrayList<E> sourceList){
+	public static void saveData(String filePath, JavaFatura sourceList){
 
 		try {
 			FileOutputStream fileOut = new FileOutputStream(filePath);
@@ -29,7 +29,7 @@ public class DataBase {
 		try {
 			FileInputStream fileIn = new FileInputStream(filePath);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			sourceList = (ArrayList<E>) in.readObject();
+			sourceList = (ArrayList) in.readObject();
 			in.close();
 			fileIn.close();
 		}	
