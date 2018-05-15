@@ -28,8 +28,8 @@ public abstract class Atividade {
         return this.nome;
     }
 
-    public void setNome(String name){
-        this.nome = name;   //Correto???
+    public void setNome(String name) {
+        this.nome = name;
     }
 
     public abstract double deduct(Fatura f); //sera especificado em cada uma das subclasses

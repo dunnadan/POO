@@ -52,7 +52,7 @@ public class LoginUI implements UI {
         Form login = new Form("Login", fields);
         login.execute();
         List<String> answers = login.getResult();
-        return new Credentials(answers.get(0), answers.get(1));
+        return new Credentials(Integer.parseInt(answers.get(0)), answers.get(1));
     }
 
     /**
@@ -60,7 +60,7 @@ public class LoginUI implements UI {
      */
     private final class Credentials {
 
-        private final String nif;
+        private final Integer nif;
         private final String pass;
 
         /**
@@ -68,7 +68,7 @@ public class LoginUI implements UI {
          * @param nif  nif
          * @param pass password
          */
-        private Credentials(String nif, String pass){
+        private Credentials(Integer nif, String pass){
             this.nif = nif;
             this.pass = pass;
         }
@@ -77,7 +77,7 @@ public class LoginUI implements UI {
          * \brief Returns the NIF
          * @return The NIF
          */
-        private String getNif(){
+        private Integer getNif(){
             return this.nif;
         }
 
