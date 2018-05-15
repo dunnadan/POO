@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Fatura implements java.io.Serializable {
 
@@ -8,9 +10,8 @@ public class Fatura implements java.io.Serializable {
 	private String numero;
     private int nif_emitente;
     private int nif_cliente;
-    private String tipo;
     private String descricao;
-    private Atividade atividade;
+    private List<Atividade> historico;
     private double valor;
     private LocalDateTime data;
 
@@ -20,24 +21,24 @@ public class Fatura implements java.io.Serializable {
         this.numero = "";
         this.nif_emitente = 0;
         this.nif_cliente = 0;
-        this.tipo = "";
         this.descricao = "";
-        this.atividade = null;
+        this.historico = new ArrayList<>();
         this.valor = 0;
         this.data = LocalDateTime.now();
 
     }
 
-    public Fatura(String numero, int nif_emitente, int nif_cliente, String tipo, String descricao, Atividade atividade, double valor){
+    public Fatura(String numero, int nif_emitente, int nif_cliente, String descricao, Atividade atividade, double valor){
 
         this.numero = numero;
         this.nif_emitente = nif_emitente;
         this.nif_cliente = nif_cliente;
-        this.tipo = tipo;
         this.descricao = descricao;
-        this.atividade = atividade;
+        this.historico = new ArrayList<>();
         this.valor = valor;
         this.data = LocalDateTime.now();
+
+        this.historico.add(atividade);
     }
 
     public Fatura(Fatura object){
@@ -45,9 +46,8 @@ public class Fatura implements java.io.Serializable {
         this.numero = object.getNumero();
         this.nif_emitente = object.getNIFEmitente();
         this.nif_cliente = object.getNIFCliente();
-        this.tipo = object.getTipo();
         this.descricao = object.getDescricao();
-        this.atividade = object.getAtividade();
+        this.historico = object.getHistorico();
         this.valor = object.getValor();
         this.data = object.getData();   
 
@@ -68,14 +68,6 @@ public class Fatura implements java.io.Serializable {
 
     public void setNIFEmitente(int nif) {
         this.nif_emitente = nif;
-    }
-
-    public String getTipo() {
-        return this.tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public LocalDateTime getData() {
@@ -102,12 +94,12 @@ public class Fatura implements java.io.Serializable {
         this.descricao = descricao;
     }
 
-    public Atividade getAtividade() {
-        return this.atividade;
+    public List<Atividade> getHistorico() {
+        return new ArrayList<>(this.historico);
     }
 
-    public void setAtividade(Atividade atividade) {
-        this.atividade = atividade;
+    public void setHistorico(Atividade atividade) {
+        this.historico.add(atividade);
     }
 
     public double getValor() {
@@ -116,6 +108,10 @@ public class Fatura implements java.io.Serializable {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public Atividade getAtividadeAtual(){
+        return this.historico.get(this.historico.size() - 1);
     }
 
     @Override
@@ -128,27 +124,24 @@ public class Fatura implements java.io.Serializable {
         if(this == o) return true;
         if(o == null || this.getClass()!=o.getClass()) return false;
         Fatura f = (Fatura) o;
-        return (this.numero == f.getNumero()
-            &&this.nif_emitente == f.nif_emitente
-            &&this.nif_cliente == f.nif_cliente
-            &&this.tipo == f.tipo
-            &&this.descricao == f.getDescricao()
-            &&this.atividade == f.getAtividade()
-            &&this.valor == f.getValor()
-            &&this.data == f.getData());
+        return ((this.numero.equals(f.getNumero()))
+                && (this.nif_emitente == f.nif_emitente)
+                && (this.nif_cliente == f.nif_cliente)
+                && this.descricao.equals(f.getDescricao())
+                && (this.historico == f.getHistorico())
+                && (this.valor == f.getValor())
+                && (this.data == f.getData()));
     }
 
     @Override
     public String toString() {
-        return "Fatura{" +
-                "numero='" + numero + '\'' +
-                ", nif_emitente=" + nif_emitente +
-                ", nif_cliente=" + nif_cliente +
-                ", tipo='" + tipo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", atividade=" + atividade +
-                ", valor=" + valor +
-                ", data=" + data +
-                '}';
+        return "Fatura:" + '\n' +
+                "Numero= " + numero + '\n' +
+                "Nif Emitente= " + nif_emitente + '\n' +
+                "Nif Cliente= " + nif_cliente + '\n' +
+                "Descricao= " + descricao + '\n' +
+                "Atividade = " + this.getAtividadeAtual() + '\n' +
+                "Valor = " + valor + '\n' +
+                "Data = " + data;
     }
 }
