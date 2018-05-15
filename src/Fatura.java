@@ -122,4 +122,33 @@ public class Fatura implements java.io.Serializable {
     public Fatura clone(){
         return new Fatura(this);
     }
+
+    public boolean equals(Object o){
+
+        if(this == o) return true;
+        if(o == null || this.getClass()!=o.getClass()) return false;
+        Fatura f = (Fatura) o;
+        return (this.numero == f.getNumero()
+            &&this.nif_emitente == f.nif_emitente
+            &&this.nif_cliente == f.nif_cliente
+            &&this.tipo == f.tipo
+            &&this.descricao == f.getDescricao()
+            &&this.atividade == f.getAtividade()
+            &&this.valor == f.getValor()
+            &&this.data == f.getData());
+    }
+
+    @Override
+    public String toString() {
+        return "Fatura{" +
+                "numero='" + numero + '\'' +
+                ", nif_emitente=" + nif_emitente +
+                ", nif_cliente=" + nif_cliente +
+                ", tipo='" + tipo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", atividade=" + atividade +
+                ", valor=" + valor +
+                ", data=" + data +
+                '}';
+    }
 }

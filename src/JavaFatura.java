@@ -1,12 +1,20 @@
-import java.util.HashMap;
+import java.util.Map;
 
 public class JavaFatura {
 
-    private HashMap<Integer,String> credenciais;
-    private HashMap<Integer,IdentidadeFiscal> user;
+    private Map<Integer,String> credenciais;
+    private Map<Integer,IdentidadeFiscal> user;
 
-    boolean login(String nif, String pass){
-        return false;
+    boolean login(Integer nif, String pass){
+        return ;
+    }
+
+    public void makeIDFiscal(IdentidadeFiscal id){
+        this.user.put(id.getNIF(),id);
+    }
+
+    public IdentidadeFiscal getIDFiscal(Integer nif){
+        return this.user.get(nif);
     }
 
 

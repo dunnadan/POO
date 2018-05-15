@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Contribuinte extends IdentidadeFiscal implements java.io.Serializable {
@@ -17,18 +18,11 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
         this.dependentes = new ArrayList<>();
     }
 
-    public Contribuinte(int nif, String nome,
-                        String email,
-                        String morada,
-                        String password,
-                        double coeficiente,
-                        List<Fatura> faturas,
-                        int[] dependentes,
+    public Contribuinte(int nif, String nome, String email, String morada, String password,
+                        double coeficiente, List<Fatura> faturas, int[] dependentes,
                         List<Atividade> atividades) {
-
-
         super(nif, nome, email, morada, password, coeficiente, atividades, faturas);
-
+        this.dependentes = new ArrayList<>();
         for (int dep : dependentes)
             this.dependentes.add(dep);
     }
@@ -66,5 +60,22 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
 
     public Contribuinte clone(){
         return new Contribuinte(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Contribuinte that = (Contribuinte) o;
+        return Objects.equals(getDependentes(), that.getDependentes());
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString() + "Contribuinte{" +
+                "dependentes=" + dependentes +
+                '}';
     }
 }

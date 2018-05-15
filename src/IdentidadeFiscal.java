@@ -59,7 +59,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.morada = object.getMorada();
         this.password = object.getPassword();
         this.coeficiente = object.getCoeficiente();
-        this.atividades = object.clone().getAtividades();
+        this.atividades = object.getAtividades();
     }
 
     //Methods

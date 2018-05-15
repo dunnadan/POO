@@ -4,24 +4,20 @@
 public abstract class Atividade {
 
     private String nome;
-    private Boolean deduct; //diz se deduz ou não valor fiscal
 
 
     //CONSTRUCTORS
 
-    public Atividade(String nome, Boolean deduct){
+    public Atividade(String nome){
         this.nome = nome;
-        this.deduct = deduct;
     }
 
     public Atividade(){
         this.nome = "";
-        this.deduct = false;
     }
 
     public  Atividade(Atividade object){
         this.nome = object.getNome();
-        this.deduct = object.getDeduct();
     }
 
 
@@ -34,10 +30,6 @@ public abstract class Atividade {
 
     public void setNome(String name){
         this.nome = name;   //Correto???
-    }
-
-    public Boolean getDeduct(){   //Clone boolean???
-        return this.deduct;
     }
 
     public abstract double deduct(Fatura f); //sera especificado em cada uma das subclasses

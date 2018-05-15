@@ -27,6 +27,7 @@ public class LoginUI implements UI {
             javaFactura.login(credentials.getNif(), credentials.getPass());
         }catch(NoSuchElementException e){
             System.out.println("Invalid credentials");
+            e.printStackTrace();
             return;
         }
         /*IdentidadeFiscal u = this.javaFactura.getLoggedUser();

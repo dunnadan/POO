@@ -15,10 +15,12 @@ public class Form implements Screen<List<String>> {
     @Override
     public void execute(){
         System.out.println("**** " + this.name + " ****");
+        int i = 0;
         Scanner is = new Scanner(System.in);
-        for(int i=0; i<this.fields.size(); i++){
+        while (i<this.fields.size()){
             System.out.println(this.fields.get(i));
             this.answers.add(is.nextLine());
+            i++;
         }
         is.close();
     }

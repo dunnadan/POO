@@ -63,11 +63,10 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
                              int nif_cliente,
                              String tipo,
                              String descricao,
-                             String atividade,
+                             Atividade atividade,
                              double valor){
-        return null;
 
-        //TODO return new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
+        return new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
     }
 
    public List<Fatura> faturasContribuinte(int nif){
@@ -98,4 +97,16 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
         return l;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    public boolean equals(Object o){
+        return super.equals(o);
+    }
+
+
+
 }
