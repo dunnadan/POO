@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -29,7 +30,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
 
     public IdentidadeFiscal(int nif, String nome, String email, String morada,
                             String password, double coeficiente,
-                            List<Atividade> atividades, List<Fatura> fatura) {
+                            List<Atividade> atividades, Collection<Fatura> faturas) {
 
 
         this.nif = nif;

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ControlClass implements Serializable {
@@ -57,13 +58,13 @@ public class ControlClass implements Serializable {
     //********************************* END OF SAVE AND LOAD ****************************************//
 
 
-    //********************************* FUNCIONALIDADES DO CONTRIBUINTE *****************************//
+    //********************************* FUNCIONALIDADES DAS EMPRESAS ********************************//
 
-    public void listFatContribuinte(IdentidadeFiscal user){
-
-    }
-
-
+    //lista das faturas de uma empresa referentes a um determinado contribuinte
+    public List<Fatura> listFatEmpresa(IdentidadeFiscal individual) throws IndividualInsteadOfEmpresaException {
+        if(!(this.user instanceof Empresa)) throw new IndividualInsteadOfEmpresaException();
+        return ((Empresa) this.user).faturasContribuinte(individual.getNIF());
+        }
 
 
 
