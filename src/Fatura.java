@@ -111,7 +111,7 @@ public class Fatura implements java.io.Serializable {
     }
 
     public Atividade getAtividadeAtual(){
-        return this.historico.get(this.historico.size() - 1);
+        return this.historico.get(this.historico.size() - 1).clone();
     }
 
     @Override

@@ -1,16 +1,15 @@
-import java.io.IOException;
 import java.util.*;
 
 public class LoginUI implements UI {
 
-    private final JavaFatura javaFactura;
+    private final ControlClass javaFactura;
 
     /**
      * \brief Constructor for the loginUI
-     * @param javaFatura The instance of the business logic
+     * @param controlClass The instance of the business logic
      */
-    LoginUI(JavaFatura javaFatura){
-        this.javaFactura = javaFatura;
+    LoginUI(ControlClass controlClass){
+        this.javaFactura = controlClass;
         /*try{
             DataBase.saveData();//tem de ter parametros
         }catch(IOException e){
@@ -29,6 +28,8 @@ public class LoginUI implements UI {
             System.out.println("Invalid credentials");
             e.printStackTrace();
             return;
+        } catch (NonExistentUserException | WrongPasswordException e) {
+            System.out.println("Invalid credentials");
         }
         /*IdentidadeFiscal u = this.javaFactura.getLoggedUser();
         if(u instanceof Admin){

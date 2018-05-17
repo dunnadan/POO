@@ -1,8 +1,8 @@
 public class ContribuinteUI implements UI {
 
-    private final JavaFatura javaFactura;
+    private final ControlClass javaFactura;
 
-    public ContribuinteUI(JavaFatura javaFactura){
+    public ContribuinteUI(ControlClass javaFactura){
         this.javaFactura = javaFactura;
     }
 

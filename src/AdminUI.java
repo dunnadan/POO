@@ -1,8 +1,8 @@
 public class AdminUI implements UI {
 
-    private final JavaFatura javaFactura;
+    private final ControlClass javaFactura;
 
-    AdminUI(JavaFatura javaFactura){
+    AdminUI(ControlClass javaFactura){
         this.javaFactura = javaFactura;
     }
 

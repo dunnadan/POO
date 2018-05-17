@@ -32,9 +32,7 @@ public abstract class Atividade {
         this.nome = name;
     }
 
-    public abstract double deduct(Fatura f); //sera especificado em cada uma das subclasses
+    public abstract Atividade clone();
 
 
-    //Nao ha setter para o deduct, porque isso e uma caracteristica de cada atividade
-    //que nao pode ser alterada.
-}
+    }

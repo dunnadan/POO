@@ -1,8 +1,8 @@
 public class EmpresaUI implements UI {
 
-    private final JavaFatura javaFactura;
+    private final ControlClass javaFactura;
 
-    public EmpresaUI(JavaFatura javaFactura){
+    public EmpresaUI(ControlClass javaFactura){
 
         this.javaFactura = javaFactura;
     }

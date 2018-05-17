@@ -2,25 +2,28 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JavaFatura implements Serializable {
+public class ControlClass implements Serializable {
 
     private Map<Integer, IdentidadeFiscal> userMap;
     private IdentidadeFiscal user;
 
-    public JavaFatura() {
+    public ControlClass() {
         this.userMap = new HashMap<>();
 
     }
 
+    //Insere Identidade Fiscal no Hash Map
     public void insert_IDFiscal(IdentidadeFiscal id) {
         this.userMap.put(id.getNIF(), id.clone());
     }
 
-    public boolean login(Integer nif, String pass) {
 
-        if (this.userMap.isEmpty()) return false;
-        this.user = this.userMap.get(nif).clone();
-        return this.userMap.get(nif).getPassword().equals(pass);
+    public void login(Integer nif, String pass) throws NonExistentUserException, WrongPasswordException {
+
+        IdentidadeFiscal user = this.userMap.get(nif);
+        if(user == null) throw new NonExistentUserException();
+        if(!user.getPassword().equals(pass)) throw new WrongPasswordException();
+        this.user = user;
     }
 
     public void makeIDFiscal(IdentidadeFiscal id) {
@@ -31,6 +34,10 @@ public class JavaFatura implements Serializable {
         return this.userMap.get(nif);
     }
 
+
+
+    //********************************* SAVE AND LOAD STATE FILE ************************************//
+
     public void saveState() throws IOException {
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("state.txt"));
         os.writeObject(this);
@@ -38,14 +45,15 @@ public class JavaFatura implements Serializable {
         os.close();
     }
 
-    public JavaFatura loadState() throws IOException, ClassNotFoundException {
 
-        JavaFatura javaFatura = new JavaFatura();
+    public ControlClass loadState() throws IOException, ClassNotFoundException {
+
         ObjectInputStream is = new ObjectInputStream(new FileInputStream("state.txt"));
-        javaFatura = (JavaFatura) is.readObject();
+        ControlClass controlClass = (ControlClass) is.readObject();
         is.close();
-
-        return javaFatura;
+        return controlClass;
     }
+
+    //********************************* END OF SAVE AND LOAD ****************************************//
 }
 

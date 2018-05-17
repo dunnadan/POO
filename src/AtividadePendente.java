@@ -1,7 +1,22 @@
 public class AtividadePendente extends Atividade {
 
-    public double deduct(Fatura f){
-        return 0;
+
+    public AtividadePendente(){
+        super();
     }
+
+    public AtividadePendente(String nome){
+        super(nome);
+    }
+
+    public AtividadePendente(AtividadePendente object){
+        super(object);
+    }
+
+
+    public AtividadePendente clone(){
+        return new AtividadePendente(this);
+    }
+
 
 }

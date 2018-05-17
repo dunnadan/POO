@@ -61,12 +61,11 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
     public Fatura makeFatura(String numero,
                              int nif_emitente,
                              int nif_cliente,
-                             String tipo,
                              String descricao,
                              Atividade atividade,
                              double valor){
 
-        return new Fatura(numero, nif_emitente, nif_cliente, tipo, descricao, atividade, valor);
+        return new Fatura(numero, nif_emitente, nif_cliente, descricao, atividade, valor);
     }
 
    public List<Fatura> faturasContribuinte(int nif){
