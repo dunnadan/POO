@@ -135,13 +135,13 @@ public class Fatura implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Fatura:" + '\n' +
-                "Numero= " + numero + '\n' +
-                "Nif Emitente= " + nif_emitente + '\n' +
-                "Nif Cliente= " + nif_cliente + '\n' +
-                "Descricao= " + descricao + '\n' +
-                "Atividade = " + this.getAtividadeAtual() + '\n' +
-                "Valor = " + valor + '\n' +
+        return "Fatura:" +
+                "Numero = " + numero +
+                "Nif Emitente = " + nif_emitente +
+                "Nif Cliente = " + nif_cliente +
+                "Descricao = " + descricao +
+                "Atividade = " + this.getAtividadeAtual() +
+                "Valor = " + valor +
                 "Data = " + data;
     }
 }

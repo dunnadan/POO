@@ -55,5 +55,18 @@ public class ControlClass implements Serializable {
     }
 
     //********************************* END OF SAVE AND LOAD ****************************************//
+
+
+    //********************************* FUNCIONALIDADES DO CONTRIBUINTE *****************************//
+
+    public void listFatContribuinte(IdentidadeFiscal user){
+
+    }
+
+
+
+
+
+
 }
 
