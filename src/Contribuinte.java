@@ -78,4 +78,15 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
                 "dependentes=" + dependentes +
                 '}';
     }
+
+    public double totalGasto(){
+
+        List<Fatura> faturas = this.getFaturas();
+        double total =0;
+
+        for(Fatura fat : faturas){
+            total += fat.getValor();
+        }
+        return total;
+    }
 }

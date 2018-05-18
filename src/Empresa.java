@@ -19,10 +19,10 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
                    String morada,
                    String password,
                    double coeficiente,
-                   List<String> atividades,
+                   List<Atividade> atividades,
                    List<Fatura> faturas ){
         
-       //TODO super(nif,nome,email,morada,password,coeficiente, atividades,faturas);
+      super(nif,nome,email,morada,password,coeficiente, atividades,faturas);
     }
 
     public Empresa(Empresa object){
@@ -41,9 +41,11 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return valor;
     }
 
-    public double totalFaturadoTempo(List<Fatura> faturas, LocalDateTime inicio, LocalDateTime fim){
+    public double totalFaturadoTempo(LocalDateTime inicio, LocalDateTime fim){
 
-        ArrayList<Fatura> faturaAux = new ArrayList<>();
+        List<Fatura> faturas = new ArrayList<>();
+        faturas = this.getFaturas();
+        List<Fatura> faturaAux = new ArrayList<>();
 
         for (Fatura fat : faturas){
             if(fat.getData().isBefore(fim) && fat.getData().isAfter(inicio)) {
@@ -93,6 +95,14 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
         List<Fatura> l = this.getFaturas();
         l.sort(new FaturaComparatorValor());
+
+        return l;
+    }
+
+    public List<Fatura> faturasEmpresaData(){
+
+        List<Fatura> l = this.getFaturas();
+        l.sort(new FaturaComparatorData());
 
         return l;
     }
