@@ -1,19 +1,26 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Teste {
+public class Teste{
 
-/*	public static ArrayList<Fatura> main(String[] args){
+    public static void teste(){
 
-		ArrayList<Fatura> fat_out = new ArrayList<Fatura>();
-		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "livro", "edu",  0.3));
-		fat_out.add(new Fatura("291306098", 501035446, 127453216, "edu", "jornal", "edu",  0.1));
+    ArrayList<Fatura> fat = new ArrayList<>();
+    ArrayList<Atividade> atv = new ArrayList<>();
+    int[] dep = {123456789, 298765432};
 
-		DataBase.saveData("/tmp/fat.ser", fat_out);
 
-		ArrayList<Fatura> fat_in = DataBase.loadData("/tmp/fat.ser");
+    HashMap<Integer,IdentidadeFiscal> db = new HashMap<>();
 
-		return fat_in;
+    IdentidadeFiscal eu = new Contribuinte();
 
-	}
-	*/
+    eu.setNome("leonardo");
+    eu.setNIF(209308066);
+    eu.setPassword("123456");
+
+    db.put(eu.getNIF(), eu);
+
+    DataBase.saveData(db);
+
+    }
 }

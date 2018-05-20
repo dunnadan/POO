@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 public class ControlClass implements Serializable {
 
-    private Map<Integer, IdentidadeFiscal> userMap;
+    private static final long serialVersionUID = 1L;
+	private Map<Integer, IdentidadeFiscal> userMap;
     private IdentidadeFiscal user;
 
     public ControlClass() {
@@ -22,9 +23,14 @@ public class ControlClass implements Serializable {
     public void login(Integer nif, String pass) throws NonExistentUserException, WrongPasswordException {
 
         IdentidadeFiscal user = this.userMap.get(nif);
-        if(user == null) throw new NonExistentUserException();
-        if(!user.getPassword().equals(pass)) throw new WrongPasswordException();
-        this.user = user;
+        
+        if(user == null) 
+            throw new NonExistentUserException();
+        
+        if(!user.auth(pass)) 
+            throw new WrongPasswordException();
+        
+            this.user = user;
     }
 
     public void inserirIDFiscal(IdentidadeFiscal id) {
@@ -53,6 +59,14 @@ public class ControlClass implements Serializable {
 
     public IdentidadeFiscal getIDFiscal(Integer nif) {
         return this.userMap.get(nif);
+    }
+
+    public IdentidadeFiscal getUser(){
+        return this.user;
+    }
+
+    public static void actions(int ctl){
+        System.out.println(ctl);
     }
 
 

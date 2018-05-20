@@ -9,8 +9,8 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
 	//Constructors
     public Empresa(){
-
-
+        
+        super();
     }
 
     public Empresa(int nif,
@@ -55,7 +55,6 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return totalFaturado(faturaAux);
     }
 
-    @Override
     public Empresa clone(){
         return new Empresa(this);
     }
@@ -116,6 +115,11 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return super.equals(o);
     }
 
-
+    public String menu() {
+        
+        return "1. Criar facturas\n" +
+               "2. Listagem de facturas de um contribuinte\n" +
+               "0. Sair da App\n";
+    }
 
 }

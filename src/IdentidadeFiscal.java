@@ -165,7 +165,6 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         return (this.password.equals(password));
     }
 
-    @Override
     public abstract IdentidadeFiscal clone();
 
     public boolean equals(Object o) {
@@ -182,9 +181,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
                 && this.faturas.equals(idFiscal.getFaturas()));
     }
 
-    @Override
     public String toString() {
-
 
         return "NIF: " + this.nif + "\n" +
                 "Nome: " + this.nome + "\n" +
@@ -193,6 +190,8 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
                 "Email: " + this.email + "\n" +
                 "Coeficiente: " + this.coeficiente + "\n" +
                 "Atividade: " + this.atividades.toString() + "\n" +
-                "Faturas: " + this.faturas.toString();
+                "Faturas: " + this.faturas.toString() + "\n";
     }
+
+    public abstract String menu();
 }
