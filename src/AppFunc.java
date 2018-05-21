@@ -22,6 +22,17 @@ public class AppFunc {
             System.out.println("Login successful\n");
     }
 
+    public static Contribuinte getContribuinte(int nif) throws NonExistentUserException{
+
+        Contribuinte cont = (Contribuinte) db.get(nif);
+
+        if (cont != null && cont instanceof Contribuinte)
+            return cont;
+        
+        else
+            throw new NonExistentUserException();
+    }
+
 
     public static void register(){
         int ctl;
@@ -77,7 +88,7 @@ public class AppFunc {
             
             ctl = Integer.valueOf(sc.nextLine());
 
-            //ControlClass.actions(ctl);
+            //ControlClass.actions(id_fiscal, ctl);
         }
 
         DataBase.saveData(db);

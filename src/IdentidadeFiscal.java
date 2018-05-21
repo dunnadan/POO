@@ -116,6 +116,10 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         return new ArrayList<>(this.atividades);
     }
 
+    public int getNumAtividades(){
+        return this.atividades.size();
+    }
+
     public void setAtividades(ArrayList<Atividade> atividades) {
         this.atividades = new ArrayList<>(atividades);
     }
