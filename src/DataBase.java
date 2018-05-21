@@ -25,12 +25,12 @@ public class DataBase {
 
 	public static Map<Integer,IdentidadeFiscal> loadData(){
 
-		Map<Integer,IdentidadeFiscal> source = new HashMap<Integer,IdentidadeFiscal>();
+		Map<Integer,IdentidadeFiscal> source = new HashMap<>();
 
 		try {
 			FileInputStream fileIn = new FileInputStream("database.ser");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			source = (Map<Integer,IdentidadeFiscal>) in.readObject();
+			source = (HashMap<Integer,IdentidadeFiscal>) in.readObject();
 			in.close();
 			fileIn.close();
 		}	
