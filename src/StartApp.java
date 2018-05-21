@@ -22,7 +22,8 @@ public class StartApp {
             case 1: AppFunc.enter();
                     break;
 
-            case 2: //AppFunc.register();
+            case 2: AppFunc.register();
+                    start();
                     break;
 
             case 0: System.exit(0);

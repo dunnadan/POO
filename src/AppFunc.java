@@ -22,13 +22,13 @@ public class AppFunc {
             System.out.println("Login successful\n");
     }
 
-    /*
+
     public static void register(){
         int ctl;
 
         System.out.println("Escolha uma opção");
         System.out.println("1. Contribuinte\n2. Empresa\n0. Sair da App");
-        ctl = sc.nextInt();
+        ctl = Integer.valueOf(sc.nextLine());
 
         switch(ctl){
             
@@ -48,7 +48,7 @@ public class AppFunc {
                 register();
         }
     }
-*/
+
     public static void enter() {
 
         int ctl = 1, nif;
@@ -57,9 +57,9 @@ public class AppFunc {
 
         try {
             System.out.print("NIF: ");
-            nif = sc.nextInt();
+            nif = Integer.valueOf(sc.nextLine());
             System.out.print("Password: ");
-            password = sc.next();
+            password = sc.nextLine();
 
             login(nif, password);
         }
@@ -75,7 +75,7 @@ public class AppFunc {
         while(ctl != 0){
             System.out.println(id_fiscal.menu());
             
-            ctl = sc.nextInt();
+            ctl = Integer.valueOf(sc.nextLine());
 
             //ControlClass.actions(ctl);
         }

@@ -1,33 +1,61 @@
+import java.util.Scanner;
+import java.util.Map;
 
-/**
- * Write a description of class Registro here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Registro
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public class Registro {
 
-    /**
-     * Constructor for objects of class Registro
-     */
-    public Registro()
-    {
-        // initialise instance variables
-        x = 0;
+    private static Scanner sc = new Scanner(System.in);
+
+    public static void contribuinte(Map<Integer,IdentidadeFiscal> db){
+        
+        IdentidadeFiscal id = new Contribuinte();
+
+        System.out.print("Nome: ");
+        id.setNome(sc.nextLine());
+
+        System.out.print("NIF: ");
+        id.setNIF(Integer.valueOf(sc.nextLine()));
+
+        System.out.print("Email: ");
+        id.setEmail(sc.nextLine());
+
+        System.out.print("Password: ");
+        id.setPassword(sc.nextLine());
+
+        System.out.print("Morada: ");
+        id.setMorada(sc.nextLine());
+        System.out.println();
+
+        id.setCoeficiente(0.2);
+
+        db.put(id.getNIF(), id);
+        
+        DataBase.saveData(db);
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public static void empresa(Map<Integer,IdentidadeFiscal> db){
+        
+        IdentidadeFiscal id = new Empresa();
+
+        System.out.print("Nome: ");
+        id.setNome(sc.next());
+
+        System.out.print("NIF: ");
+        id.setNIF(sc.nextInt());
+
+        System.out.print("Email: ");
+        id.setEmail(sc.next());
+
+        System.out.print("Morada: ");
+        id.setMorada(sc.next());
+
+        System.out.print("Password: ");
+        id.setPassword(sc.next());
+        System.out.println();
+
+        id.setCoeficiente(0.2);
+
+        db.put(id.getNIF(), id);
+        
+        DataBase.saveData(db);
     }
 }
