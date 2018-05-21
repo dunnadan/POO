@@ -77,7 +77,7 @@ public class AppFunc {
             
             ctl = Integer.valueOf(sc.nextLine());
 
-            //ControlClass.actions(ctl);
+            //ControlClass.actions(id_fiscal, ctl);
         }
 
         DataBase.saveData(db);
