@@ -1,7 +1,11 @@
-public class AtividadeLazer extends Atividade{
+import java.io.Serializable;
+
+public class AtividadeLazer extends Atividade implements Serializable{
 
 
-    public AtividadeLazer(){
+    private static final long serialVersionUID = 1L;
+
+	public AtividadeLazer(){
         super();
     }
 
@@ -19,6 +23,11 @@ public class AtividadeLazer extends Atividade{
 
     public AtividadeLazer clone(){
         return new AtividadeLazer(this);
+    }
+
+    @Override
+    public String toString(){
+        return "Lazer";
     }
 
 }

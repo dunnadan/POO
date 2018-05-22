@@ -11,6 +11,7 @@ logfile.txt
 *.ctxt
 *.bluej
 README.TXT
+doc/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

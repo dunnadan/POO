@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
+public class AtividadeSaude extends Atividade implements Serializable{
 
 
-public class AtividadeSaude extends Atividade{
+    private static final long serialVersionUID = 1L;
 
-
-    public AtividadeSaude(){
+	public AtividadeSaude(){
         super();
     }
 
@@ -24,6 +26,11 @@ public class AtividadeSaude extends Atividade{
 
         double x = f.getValor();
         return x * 0.15;
+    }
+
+    @Override
+    public String toString(){
+        return "Saúde";
     }
 
 }

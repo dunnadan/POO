@@ -118,11 +118,11 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
     public String menu() {
         
         return "1. Criar facturas\n" +
-               "2. Listagem de facturas de um contribuinte por data\n" +
-               "3. Listagem de facturas de um contribuinte por valor\n" +
-               "4. Listagem de facturas da empresa por valor\n" +
-               "5. Listagem de facturas da empresa por data\n" +
-               "6. Total faturado\n" +
+               "2. Listagem de facturas de um contribuinte ordenada por data\n" +
+               "3. Listagem de facturas de um contribuinte ordenada por valor\n" +
+               "4. Listagem de facturas da empresa ordenada por valor\n" +
+               "5. Listagem de facturas da empresa ordenada por data\n" +
+               "6. Total faturado num período de tempo\n" +
                "0. Sair da App\n";
     }
 }

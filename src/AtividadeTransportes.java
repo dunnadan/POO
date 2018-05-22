@@ -1,6 +1,10 @@
-public class AtividadeTransportes extends Atividade{
+import java.io.Serializable;
 
-    public AtividadeTransportes(){
+public class AtividadeTransportes extends Atividade implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
+	public AtividadeTransportes(){
         super();
     }
 
@@ -21,5 +25,10 @@ public class AtividadeTransportes extends Atividade{
 
         double x = f.getValor();
         return x * 0.15;
+    }
+
+    @Override
+    public String toString(){
+        return "Transporte";
     }
 }

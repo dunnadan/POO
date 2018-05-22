@@ -12,7 +12,7 @@ public class StartApp {
                "0. Sair da App\n";
     }
 
-    private static void start(){
+    private static void start() {
         
         System.out.println("Escolha uma opção");
         System.out.println(main_menu());
@@ -35,10 +35,8 @@ public class StartApp {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         start();
-
-        System.exit(0);
     }
 }

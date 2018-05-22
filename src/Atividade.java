@@ -1,9 +1,6 @@
-
-
-
 public abstract class Atividade {
 
-    private String nome;
+	private String nome;
 
 
     //CONSTRUCTORS

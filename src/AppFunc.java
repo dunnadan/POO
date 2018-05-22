@@ -6,7 +6,6 @@ public class AppFunc {
 
     private static IdentidadeFiscal id_fiscal;
     private static Map<Integer,IdentidadeFiscal> db = DataBase.loadData();
-    private static Scanner sc = new Scanner(System.in);
 
     private static void login(Integer nif, String password) throws WrongPasswordException, NonExistentUserException{
 
@@ -21,6 +20,7 @@ public class AppFunc {
         else 
             System.out.println("Login successful\n");
     }
+    
 
     public static Contribuinte getContribuinte(int nif) throws NonExistentUserException{
 
@@ -35,62 +35,77 @@ public class AppFunc {
 
 
     public static void register(){
+
+        Scanner sc = new Scanner(System.in);
         int ctl;
 
         System.out.println("Escolha uma opção");
         System.out.println("1. Contribuinte\n2. Empresa\n0. Sair da App");
         ctl = Integer.valueOf(sc.nextLine());
+        
+        try{
+            switch(ctl){
 
-        switch(ctl){
-            
-            case 1:
-                Registro.contribuinte(db);
-                break;
+                case 1:
+                    Registro.contribuinte(db);
+                    DataBase.saveData(db);
+                    break;
 
-            case 2:
-                Registro.empresa(db);
-                break;
+                case 2:
+                    Registro.empresa(db);
+                    DataBase.saveData(db);
+                    break;
 
-            case 0:
-                System.exit(0);
+                case 0:
+                    System.exit(0);
 
-            default:
-                System.out.println("Opção inválida\n\n");
-                register();
+                default:
+                    System.out.println("Opção inválida\n\n");
+                    register();
+            }
+        }
+
+        catch (ExistentUserException e){
+            System.out.println("Usuários " + e.getNIF() + " já existe.");
+        }
+
+        finally{
+            sc.close();
         }
     }
 
-    public static void enter() {
+    public static void enter(){
 
-        int ctl = 1, nif;
-        String password;
-
+        Scanner sc = new Scanner(System.in);
+        int ctl = 1;
 
         try {
             System.out.print("NIF: ");
-            nif = Integer.valueOf(sc.nextLine());
+            int nif = Integer.valueOf(sc.nextLine());
+            
             System.out.print("Password: ");
-            password = sc.nextLine();
+            String password = sc.nextLine();
 
             login(nif, password);
+
+            while(ctl != 0){
+                System.out.println(id_fiscal.menu());
+                ctl = Integer.valueOf(sc.nextLine());
+                ControlClass.actions(id_fiscal, ctl);
+            }
         }
         
         catch(NonExistentUserException e){
-            e.printStackTrace();
+            System.out.println("Erro: " + e);
         }
         
         catch(WrongPasswordException p){
-            p.printStackTrace();
+            System.out.println("Erro: " + p);
         }
 
-        while(ctl != 0){
-            System.out.println(id_fiscal.menu());
-            
-            ctl = Integer.valueOf(sc.nextLine());
-
-            //ControlClass.actions(id_fiscal, ctl);
+        finally {
+            DataBase.saveData(db);
+            sc.close();
         }
-
-        DataBase.saveData(db);
     }
 }

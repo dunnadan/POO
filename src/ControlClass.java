@@ -1,18 +1,40 @@
-import java.io.*;
+import java.util.Scanner;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.time.format.DateTimeFormatter;
 
 public class ControlClass {
 
-    public static void actions(IdentidadeFiscal id_fiscal, int ctl){
+    public static void actions(IdentidadeFiscal id_fiscal, int ctl) {
         if (id_fiscal instanceof Contribuinte){
 
             Contribuinte cont = (Contribuinte) id_fiscal;
+            
             switch(ctl){
-
                 case 1:
+                    System.out.println(id_fiscal.getFaturas() + "\n");
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    addDependente(cont);
+                    break;
+
+                case 0:
+                    break;
+
+                default: 
+                    actions(id_fiscal, ctl);
+                    break;
             }
 
         }
@@ -21,9 +43,43 @@ public class ControlClass {
 
             Empresa emp = (Empresa) id_fiscal;
 
+            switch(ctl){
+                case 1:
+                    criaFatura(emp);
+                    break;
+
+                case 2:
+                    System.out.println(listFatEmpresaData(emp));
+                    break;
+
+                case 3:
+                    System.out.println(listFatEmpresaValor(emp));
+                    break;
+
+                case 4:
+                    System.out.println(fatEmpresaValor(emp));
+                    break;
+
+                case 5:
+                    System.out.println(fatEmpresaData(emp));
+                    break;
+
+                case 6:
+                    System.out.println(valorFaturadoTempo(emp));
+                    break;
+
+                case 0:
+                    break;
+
+                default: 
+                    actions(id_fiscal, ctl);
+                    break;
+            }            
         }
 
         else {
+
+            Admin adm = (Admin) id_fiscal;
 
 
         }
@@ -32,20 +88,30 @@ public class ControlClass {
     //********************************* FUNCIONALIDADES DAS EMPRESAS ********************************//
 
     //lista das faturas de uma empresa referentes a um determinado contribuinte
-    private static void listFatEmpresaData(Empresa individual) {
-        List<Fatura> ret = individual.faturasContribuinteData(individual.getNIF());
+    private static List<Fatura> listFatEmpresaData(Empresa individual) {
 
-        System.out.println(ret);         
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("NIF contribuinte: ");
+        List<Fatura> ret = individual.faturasContribuinteData(Integer.valueOf(sc.nextLine()));
+        sc.close();
+
+        return ret;         
         }
 
-    private static void listFatEmpresaValor(Empresa individual){
-        List<Fatura> ret = individual.faturasContribuinteValor(individual.getNIF());
+    private static List<Fatura> listFatEmpresaValor(Empresa individual){
 
-        System.out.println(ret);
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("NIF contribuinte: ");
+        List<Fatura> ret = individual.faturasContribuinteValor(Integer.valueOf(sc.nextLine()));
+        sc.close();
+
+        return ret;
     }
 
     //total faturado num intervalo de tempo
-    private static void valorFaturadoTempo(Empresa individual){
+    private static double valorFaturadoTempo(Empresa individual){
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -55,27 +121,29 @@ public class ControlClass {
         System.out.println("Data de término: dd/mm/yyyy");
         LocalDateTime fim = LocalDateTime.parse(sc.nextLine(), formatter);
 
-        System.out.println(individual.totalFaturadoTempo(inicio,fim));
-
         sc.close();
+
+        return individual.totalFaturadoTempo(inicio,fim);
+
+        
     }
 
     //lista de faturas de uma empresa ordenada por data
-    private static void fatEmpresaData(Empresa individual){
+    private static List<Fatura> fatEmpresaData(Empresa individual){
         List<Fatura> ret = individual.faturasEmpresaData();
 
-        System.out.println(ret);
+        return ret;
     }
 
     //lista de faturas de uma empresa ordenada por valor
-    private static void fatEmpresaValor(Empresa individual){
+    private static List<Fatura> fatEmpresaValor(Empresa individual){
         List<Fatura> ret = individual.faturasEmpresaValor();
 
-        System.out.println(ret);
+        return ret;
     }
 
     //criaçao de fatura por parte de uma empresa
-    private static void criaFatura(Empresa individual) throws NonExistentUserException{
+    private static void criaFatura(Empresa individual) {
 
         Scanner sc = new Scanner(System.in);
         Atividade atv;
@@ -85,26 +153,36 @@ public class ControlClass {
         int nif = Integer.valueOf(sc.nextLine());
 
         System.out.print("Valor: ");
-        double valor = Integer.valueOf(sc.nextLine());
+        double valor = Double.parseDouble(sc.nextLine());
 
         System.out.print("Descrição: ");
         String descricao = sc.nextLine();
-
-        Contribuinte cont = AppFunc.getContribuinte(nif);
         
-        if (cont.getNumAtividades() > 1)
+        if (individual.getNumAtividades() > 1)
             atv = new AtividadePendente();
+        
         else
-            atv = cont.getAtividades().get(0).clone();
-
+            atv = individual.getAtividades().get(0);
 
         Fatura fat = new Fatura(num, individual.getNIF(), nif, descricao, atv, valor);
 
-        cont.addFaturas(fat);
+        try {
+            Contribuinte cont = AppFunc.getContribuinte(nif);
+            cont.addFaturas(fat);
+            individual.addFaturas(fat); 
+            System.out.println("Fatura nº: " + individual.getFaturas().size() + " criada com sucesso!\n");
+        }
 
-        System.out.println("Fatura nº: " + individual.getFaturas().size() + " criada com sucesso!\n");
+        catch (NonExistentUserException e){
+            System.out.println("Erro: Usuário não existe\n");
+        }
 
+        finally {
+            sc.close();
+        }
     }
+
+    
 
     /*
     //relaçao das 10 empresas
@@ -137,5 +215,17 @@ public class ControlClass {
     }
 
 */
+
+    private static void addDependente(Contribuinte id){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("NIF dependente: ");
+        id.addDependente(Integer.valueOf(sc.nextLine()));
+        System.out.println("Dependente adicionado!\n");
+
+        sc.close();
+    }
+
+
 }
 

@@ -5,11 +5,6 @@ public class Teste{
 
     public static void teste(){
 
-    ArrayList<Fatura> fat = new ArrayList<>();
-    ArrayList<Atividade> atv = new ArrayList<>();
-    int[] dep = {123456789, 298765432};
-
-
     HashMap<Integer,IdentidadeFiscal> db = new HashMap<>();
 
     IdentidadeFiscal eu = new Contribuinte();

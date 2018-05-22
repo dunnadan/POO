@@ -1,7 +1,11 @@
-public class AtividadeAlimentacao extends Atividade{
+import java.io.Serializable;
+
+public class AtividadeAlimentacao extends Atividade implements Serializable{
 
 
-    public AtividadeAlimentacao(){
+    private static final long serialVersionUID = 1L;
+
+	public AtividadeAlimentacao(){
         super();
     }
 
@@ -21,5 +25,10 @@ public class AtividadeAlimentacao extends Atividade{
 
     public AtividadeAlimentacao clone(){
         return new AtividadeAlimentacao(this);
+    }
+
+    @Override
+    public String toString(){
+        return "Alimentação";
     }
 }

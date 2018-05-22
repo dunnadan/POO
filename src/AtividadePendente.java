@@ -1,7 +1,12 @@
-public class AtividadePendente extends Atividade {
+import java.io.Serializable;
+
+public class AtividadePendente extends Atividade implements Serializable{
 
 
-    public AtividadePendente(){
+    private static final long serialVersionUID = 1L;
+
+
+	public AtividadePendente(){
         super();
     }
 
@@ -16,6 +21,11 @@ public class AtividadePendente extends Atividade {
 
     public AtividadePendente clone(){
         return new AtividadePendente(this);
+    }
+
+    @Override
+    public String toString(){
+        return "Pendente";
     }
 
 

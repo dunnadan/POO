@@ -1,7 +1,11 @@
-public class AtividadeEducacao extends Atividade implements Deduzivel {
+import java.io.Serializable;
+
+public class AtividadeEducacao extends Atividade implements Deduzivel, Serializable {
 
 
-    public AtividadeEducacao(){
+    private static final long serialVersionUID = 1L;
+
+	public AtividadeEducacao(){
         super();
     }
 
@@ -21,6 +25,11 @@ public class AtividadeEducacao extends Atividade implements Deduzivel {
 
     public AtividadeEducacao clone(){
         return new AtividadeEducacao(this);
+    }
+
+    @Override
+    public String toString(){
+        return "Educação";
     }
 
 }
