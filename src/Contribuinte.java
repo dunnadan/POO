@@ -158,6 +158,7 @@ public class Contribuinte extends IdentidadeFiscal implements java.io.Serializab
                "3. Associar classificação de atividade económica a uma factura\n" +
                "4. Corrigir a classificação de atividade económica de uma factura\n" +
                "5. Adicionar dependente\n" +
+               "6. Meus dependentes\n" +
                "0. Sair da App\n";
     }
 }

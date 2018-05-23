@@ -54,7 +54,7 @@ public class Registro {
         System.out.println();
 
         id.setCoeficiente(0.2);
-        id.addAtividades(addAtividade_IO());
+        id.addAtividades(ControlClass.addAtividade_IO());
         
         if (db.putIfAbsent(id.getNIF(), id) == null)
             return;
@@ -62,38 +62,5 @@ public class Registro {
             throw new ExistentUserException(id.getNIF());
     }
 
-    private static Atividade addAtividade_IO(){
-        Scanner sc = new Scanner(System.in);
-        Atividade atv;
-
-        System.out.println("Escolha uma atividade");
-        System.out.println("1. Alimentação\n2. Educação\n3. Lazer\n4. Saúde\n");
-
-        switch(Integer.valueOf(sc.nextLine())){
-
-            case 1:
-                atv = new AtividadeAlimentacao();
-                break;
-
-            case 2:
-                atv = new AtividadeEducacao();
-                break;
-
-            case 3:
-                atv = new AtividadeLazer();
-                break;
-
-            case 4:
-                atv = new AtividadeSaude();
-                break;
-
-            default:
-                System.out.println("Opção inválida");
-                atv = addAtividade_IO();
-                break;
-        }
-
-        sc.close();
-        return atv;
-    }
+    
 }

@@ -13,7 +13,7 @@ public class ControlClass {
             
             switch(ctl){
                 case 1:
-                    System.out.println(id_fiscal.getFaturas() + "\n");
+                    System.out.println(id_fiscal.getFaturas());
                     break;
 
                 case 2:
@@ -27,6 +27,10 @@ public class ControlClass {
 
                 case 5:
                     addDependente(cont);
+                    break;
+
+                case 6:
+                    System.out.println(cont.getDependentes());
                     break;
 
                 case 0:
@@ -66,6 +70,18 @@ public class ControlClass {
 
                 case 6:
                     System.out.println(valorFaturadoTempo(emp));
+                    break;
+
+                case 7:
+                    System.out.println(emp.getFaturas());
+                    break;
+
+                case 8:
+                    emp.addAtividades(addAtividade_IO());
+                    break;
+
+                case 9:
+                    System.out.println(emp.getAtividades());
                     break;
 
                 case 0:
@@ -192,6 +208,41 @@ public class ControlClass {
         finally {
             sc.close();
         }
+    }
+
+    public static Atividade addAtividade_IO(){
+        Scanner sc = new Scanner(System.in);
+        Atividade atv;
+
+        System.out.println("Escolha uma atividade");
+        System.out.println("1. Alimentação\n2. Educação\n3. Lazer\n4. Saúde\n");
+
+        switch(Integer.valueOf(sc.nextLine())){
+
+            case 1:
+                atv = new AtividadeAlimentacao();
+                break;
+
+            case 2:
+                atv = new AtividadeEducacao();
+                break;
+
+            case 3:
+                atv = new AtividadeLazer();
+                break;
+
+            case 4:
+                atv = new AtividadeSaude();
+                break;
+
+            default:
+                System.out.println("Opção inválida");
+                atv = addAtividade_IO();
+                break;
+        }
+
+        sc.close();
+        return atv;
     }
 
     

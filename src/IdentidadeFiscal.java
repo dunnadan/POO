@@ -125,6 +125,12 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
     }
 
     public void addAtividades(Atividade atividade) {
+
+        for (Atividade atv : this.atividades){
+            if (atv.getClass() == atividade.getClass())
+                return;
+        }
+
         this.atividades.add(atividade);
     }
 
