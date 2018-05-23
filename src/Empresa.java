@@ -182,7 +182,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
     }
 
     /**
-     * Imprime no terminal as opçoes que uma Empresa tem no sistema
+     * Opçoes que uma Empresa tem no sistema
      * @return String com opçoes
      */
     public String menu() {

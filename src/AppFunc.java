@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 public class AppFunc {
 
     private static IdentidadeFiscal id_fiscal;
-    public static Map<Integer, IdentidadeFiscal> db = DataBase.loadData();
+    private static Map<Integer, IdentidadeFiscal> db = DataBase.loadData();
 
     private static void login(Integer nif, String password) throws WrongPasswordException, NonExistentUserException {
 
