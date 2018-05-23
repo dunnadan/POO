@@ -94,17 +94,6 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return new Empresa(this);
     }
 
-    public Fatura makeFatura(String numero,
-                             int nif_emitente,
-                             int nif_cliente,
-                             String descricao,
-                             Atividade atividade,
-                             double valor){
-
-        return new Fatura(numero, nif_emitente, nif_cliente, descricao, atividade, valor);
-    }
-
-
     /**
      * Filtra as faturas de uma empresa tendo em conta um contribuinte individual
      * @param nif NIF do contribuinte
@@ -193,6 +182,9 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
                "4. Listagem de facturas da empresa ordenada por valor\n" +
                "5. Listagem de facturas da empresa ordenada por data\n" +
                "6. Total faturado num período de tempo\n" +
+               "7. Minhas faturas\n" +
+               "8. Adicionar atividade\n" +
+               "9. Minhas atividades\n" +
                "0. Sair da App\n";
     }
 }

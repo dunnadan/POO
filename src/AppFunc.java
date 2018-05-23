@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 public class AppFunc {
 
     private static IdentidadeFiscal id_fiscal;
-    public static Map<Integer, IdentidadeFiscal> db = DataBase.loadData();
+    private static Map<Integer, IdentidadeFiscal> db = DataBase.loadData();
 
     private static void login(Integer nif, String password) throws WrongPasswordException, NonExistentUserException {
 
@@ -27,7 +27,9 @@ public class AppFunc {
 
         if (cont != null && cont instanceof Contribuinte) {
             return (Contribuinte) cont;
-        } else
+        }
+        
+        else
             throw new NonExistentUserException();
     }
 
@@ -72,9 +74,13 @@ public class AppFunc {
                     System.out.println("Opção inválida\n\n");
                     register();
             }
-        } catch (ExistentUserException e) {
-            System.out.println("Usuários " + e.getNIF() + " já existe.");
-        } finally {
+        } 
+        
+        catch (ExistentUserException e) {
+            System.out.println("Usuário " + e.getNIF() + " já existe.");
+        } 
+        
+        finally {
             sc.close();
         }
     }
@@ -98,11 +104,17 @@ public class AppFunc {
                 ctl = Integer.valueOf(sc.nextLine());
                 ControlClass.actions(id_fiscal, ctl);
             }
-        } catch (NonExistentUserException e) {
+        }
+
+        catch (NonExistentUserException e) {
             System.out.println("Erro: " + e);
-        } catch (WrongPasswordException p) {
+        }
+
+        catch (WrongPasswordException p) {
             System.out.println("Erro: " + p);
-        } finally {
+        }
+
+        finally {
             DataBase.saveData(db);
             sc.close();
         }
