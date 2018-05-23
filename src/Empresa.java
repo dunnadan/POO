@@ -19,14 +19,14 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Construtor Empresa parametrizado
-     * @param nif
-     * @param nome
-     * @param email
-     * @param morada
-     * @param password
-     * @param coeficiente
-     * @param atividades
-     * @param faturas
+     * @param nif NIF da Empresa
+     * @param nome Nome da Empresa
+     * @param email Email da Empresa
+     * @param morada Morada da Empresa
+     * @param password Password da conta
+     * @param coeficiente Coeficiente da Empresa
+     * @param atividades Atividades da Empresa
+     * @param faturas Faturas da Empresa
      */
     public Empresa(int nif,
                    String nome,
@@ -42,7 +42,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Construtor Empresa através de um objeto
-     * @param object
+     * @param object Empresa
      */
     public Empresa(Empresa object){
         
@@ -53,7 +53,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Total Faturado por uma Empresa
-     * @param faturas
+     * @param faturas Faturas da Empresa
      * @return Valor faturado
      */
     public double totalFaturado(List<Fatura> faturas){
@@ -68,8 +68,8 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Total faturado por uma Empresa num intervalo de tempo
-     * @param inicio
-     * @param fim
+     * @param inicio inicio do periodo
+     * @param fim fim do periodo
      * @return Valor faturado
      */
     public double totalFaturadoTempo(LocalDateTime inicio, LocalDateTime fim){
@@ -107,7 +107,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Filtra as faturas de uma empresa tendo em conta um contribuinte individual
-     * @param nif
+     * @param nif NIF do contribuinte
      * @return Lista de faturas
      */
    public List<Fatura> faturasContribuinte(int nif){
@@ -118,7 +118,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Ordena as faturas de um contribuinte por valor
-     * @param nif
+     * @param nif NIF do contribuinte
      * @return Lista de faturas
      */
    public List<Fatura> faturasContribuinteValor(int nif){
@@ -129,7 +129,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Ordena as faturas de um contribuinte por data
-     * @param nif
+     * @param nif NIF do contribuinte
      * @return Lista de faturas
      */
     public List<Fatura> faturasContribuinteData(int nif){
@@ -154,7 +154,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * Ordena as faturas da empresa por data
-     * @return
+     * @return Lista de faturas
      */
     public List<Fatura> faturasEmpresaData(){
 
@@ -174,7 +174,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     /**
      * {@inheritDoc}
-     * @param o
+     * @param o Empresa
      * @return
      */
     public boolean equals(Object o){
