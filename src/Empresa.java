@@ -8,11 +8,26 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
 
 	//Constructors
+
+    /**
+     * Construtor Empresa vazio
+     */
     public Empresa(){
         
         super();
     }
 
+    /**
+     * Construtor Empresa parametrizado
+     * @param nif
+     * @param nome
+     * @param email
+     * @param morada
+     * @param password
+     * @param coeficiente
+     * @param atividades
+     * @param faturas
+     */
     public Empresa(int nif,
                    String nome,
                    String email,
@@ -25,12 +40,22 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
       super(nif,nome,email,morada,password,coeficiente, atividades,faturas);
     }
 
+    /**
+     * Construtor Empresa através de um objeto
+     * @param object
+     */
     public Empresa(Empresa object){
         
         super(object);
     }
 
     //Methods
+
+    /**
+     * Total Faturado por uma Empresa
+     * @param faturas
+     * @return Valor faturado
+     */
     public double totalFaturado(List<Fatura> faturas){
 
         double valor = 0 ;
@@ -41,6 +66,12 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return valor;
     }
 
+    /**
+     * Total faturado por uma Empresa num intervalo de tempo
+     * @param inicio
+     * @param fim
+     * @return Valor faturado
+     */
     public double totalFaturadoTempo(LocalDateTime inicio, LocalDateTime fim){
 
         List<Fatura> faturas = new ArrayList<>();
@@ -55,6 +86,10 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return totalFaturado(faturaAux);
     }
 
+    /**
+     * {@inheritDoc}
+     * @return Empresa
+     */
     public Empresa clone(){
         return new Empresa(this);
     }
@@ -69,18 +104,34 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return new Fatura(numero, nif_emitente, nif_cliente, descricao, atividade, valor);
     }
 
+
+    /**
+     * Filtra as faturas de uma empresa tendo em conta um contribuinte individual
+     * @param nif
+     * @return Lista de faturas
+     */
    public List<Fatura> faturasContribuinte(int nif){
         return this.getFaturas().stream()
                 .filter(f -> f.getNIFCliente() == nif)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Ordena as faturas de um contribuinte por valor
+     * @param nif
+     * @return Lista de faturas
+     */
    public List<Fatura> faturasContribuinteValor(int nif){
        List<Fatura> l = this.faturasContribuinte(nif);
        l.sort(new FaturaComparatorValor());
        return l;
    }
 
+    /**
+     * Ordena as faturas de um contribuinte por data
+     * @param nif
+     * @return Lista de faturas
+     */
     public List<Fatura> faturasContribuinteData(int nif){
 
        List<Fatura> l = this.faturasContribuinte(nif);
@@ -89,7 +140,10 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
        return l;
     }
 
-    //retorna as faturas de uma empresa ordenadas por valor
+    /**
+     * Ordena as faturas da empresa por valor
+     * @return Lista de faturas
+     */
     public List<Fatura> faturasEmpresaValor(){
 
         List<Fatura> l = this.getFaturas();
@@ -98,6 +152,10 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return l;
     }
 
+    /**
+     * Ordena as faturas da empresa por data
+     * @return
+     */
     public List<Fatura> faturasEmpresaData(){
 
         List<Fatura> l = this.getFaturas();
@@ -106,15 +164,27 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
         return l;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     public String toString() {
         return super.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     * @param o
+     * @return
+     */
     public boolean equals(Object o){
         return super.equals(o);
     }
 
+    /**
+     * Imprime no terminal as opçoes que uma Empresa tem no sistema
+     * @return String com opçoes
+     */
     public String menu() {
         
         return "1. Criar facturas\n" +

@@ -23,10 +23,10 @@ public class AppFunc {
 
     public static Contribuinte getContribuinte(int nif) throws NonExistentUserException {
 
-        Contribuinte cont = (Contribuinte) db.get(nif);
+        IdentidadeFiscal cont = db.get(nif);
 
-        if (cont != null) {
-            return cont;
+        if (cont != null && cont instanceof Contribuinte) {
+            return (Contribuinte) cont;
         } else
             throw new NonExistentUserException();
     }
