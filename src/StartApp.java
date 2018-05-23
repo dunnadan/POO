@@ -16,7 +16,6 @@ public class StartApp {
         
         System.out.println("Escolha uma opção");
         System.out.println(main_menu());
-
         switch(sc.nextInt()){
 
             case 1: AppFunc.enter();

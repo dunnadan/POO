@@ -130,16 +130,28 @@ public class ControlClass {
 
     //lista de faturas de uma empresa ordenada por data
     private static List<Fatura> fatEmpresaData(Empresa individual){
-        List<Fatura> ret = individual.faturasEmpresaData();
 
-        return ret;
+        return individual.faturasEmpresaData();
     }
 
     //lista de faturas de uma empresa ordenada por valor
     private static List<Fatura> fatEmpresaValor(Empresa individual){
-        List<Fatura> ret = individual.faturasEmpresaValor();
 
-        return ret;
+        return individual.faturasEmpresaValor();
+    }
+
+    //TODO calcular o total de deduçao delas
+    private static List<Empresa> relacao10Empresas() {
+
+        return AppFunc.getAllEmpresas().stream().sorted(new EmpresaComparatorValor()).limit(10)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Contribuinte> relacao10Contribuintes() {
+
+        return AppFunc.getAllContribuintes().stream()
+                .sorted(new ContribuinteComparatorValor()).limit(10)
+                .collect(Collectors.toList());
     }
 
     //criaçao de fatura por parte de uma empresa
@@ -184,37 +196,6 @@ public class ControlClass {
 
     
 
-    /*
-    //relaçao das 10 empresas
-    //TODO calcular o total de deduçao delas
-    private static void relacaoEmpresas(){
-
-        if(!(this.user instanceof Admin)) {
-            throw new NotAdminExeption();
-        }
-
-        List<IdentidadeFiscal> listaEmpresas = this.userMap.values().stream().filter(l -> l instanceof Empresa).collect(Collectors.toList());
-        List<Empresa> lista = (List<Empresa>)(List<?>) listaEmpresas;
-        lista.sort(new EmpresaComparatorValor());
-        List<Empresa> listafinal = lista.stream().limit(10).collect(Collectors.toList());
-
-        return listafinal;
-    }
-
-    private static List<Contribuinte> relaçaoContribuintes() throws NotAdminExeption{
-        if(!(this.user instanceof Admin)) {
-            throw new NotAdminExeption();
-        }
-        List<IdentidadeFiscal> listaContribuinte= this.userMap.values().stream().filter(l -> l instanceof Contribuinte).collect(Collectors.toList());
-        List<Contribuinte> lista = (List<Contribuinte>)(List<?>) listaContribuinte;
-        lista.sort(new ContribuinteComparatorValor());
-
-        List<Contribuinte> listafinal = lista.stream().limit(10).collect(Collectors.toList());
-
-        return listafinal;
-    }
-
-*/
 
     private static void addDependente(Contribuinte id){
         Scanner sc = new Scanner(System.in);
