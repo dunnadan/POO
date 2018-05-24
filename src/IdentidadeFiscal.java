@@ -16,7 +16,9 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
     private List<Fatura> faturas;
 
 
-
+    /**
+     * Contrutor Identidade Fiscal vazio
+     */
     public IdentidadeFiscal() {
         this.nif = 0;
         this.nome = "";
@@ -28,9 +30,20 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.faturas = new ArrayList<>();
     }
 
+    /**
+     * Construtor parametrizado de uma Identidade Fiscal
+     * @param nif NIF da Identidade Fiscal
+     * @param nome Nome da Identidade Fiscal
+     * @param email Email da Identidade Fiscal
+     * @param morada Morada da Identidade Fiscal
+     * @param password Password da conta
+     * @param coeficiente Coeficente da Identidade Fiscal
+     * @param atividades Atividdades deduziveis
+     * @param faturas Lista de Faturas
+     */
     public IdentidadeFiscal(int nif, String nome, String email, String morada,
                             String password, double coeficiente,
-                            List<Atividade> atividades, Collection<Fatura> faturas) {
+                            List<Atividade> atividades, List<Fatura> faturas) {
 
 
         this.nif = nif;
@@ -49,7 +62,10 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.atividades.addAll(atividades);
     }
 
-
+    /**
+     * Contrutor por objeto de uma Identidade Fiscal
+     * @param object Identidade Fiscal
+     */
     public IdentidadeFiscal(IdentidadeFiscal object) {
 
         this.atividades = new ArrayList<>();
@@ -169,14 +185,28 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
             this.faturas.remove(fatura);
     }
 
-    //usaremos para autenticar uma identidade fiscal na hora de logar na app
+
+    /**
+     * Metodo que autentica um utilizador quando entra na plataforma
+     * @param password Password da conta
+     * @return Verdadeiro ou Falso
+     */
     public boolean auth(String password) {
 
         return (this.password.equals(password));
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     public abstract IdentidadeFiscal clone();
 
+    /**
+     * {@inheritDoc}
+     * @param o
+     * @return
+     */
     public boolean equals(Object o) {
 
         if (this == o) return true;
@@ -191,6 +221,10 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
                 && this.faturas.equals(idFiscal.getFaturas()));
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     public String toString() {
 
         return "NIF: " + this.nif + "\n" +
