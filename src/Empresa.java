@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
+    private String concelho;
 
 	//Constructors
 
@@ -13,8 +14,8 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
      * Construtor Empresa vazio
      */
     public Empresa(){
-        
         super();
+        this.concelho ="";
     }
 
     /**
@@ -27,6 +28,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
      * @param coeficiente Coeficiente da Empresa
      * @param atividades Atividades da Empresa
      * @param faturas Faturas da Empresa
+     * @param concelho Concelho da Empresa
      */
     public Empresa(int nif,
                    String nome,
@@ -35,9 +37,10 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
                    String password,
                    double coeficiente,
                    List<Atividade> atividades,
-                   List<Fatura> faturas ){
+                   List<Fatura> faturas, String concelho ){
         
       super(nif,nome,email,morada,password,coeficiente, atividades,faturas);
+      this.concelho = concelho;
     }
 
     /**
@@ -47,9 +50,18 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
     public Empresa(Empresa object){
         
         super(object);
+        this.concelho = object.getConcelho();
     }
 
     //Methods
+    
+    public String getConcelho() {
+        return this.concelho;
+    }
+
+    public void setConcelho(String c){
+        this.concelho = c;
+    }
 
     /**
      * Total Faturado por uma Empresa
@@ -158,12 +170,12 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
      * @return
      */
     public String toString() {
-        return super.toString();
+        return super.toString()+this.concelho+"\n";
     }
 
     /**
      * {@inheritDoc}
-     * @param o Empresa
+     * @param o Objeto
      * @return
      */
     public boolean equals(Object o){
