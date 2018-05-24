@@ -54,7 +54,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
     }
 
     //Methods
-    
+
     public String getConcelho() {
         return this.concelho;
     }

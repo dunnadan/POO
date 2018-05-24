@@ -1,5 +1,9 @@
 public class Admin extends IdentidadeFiscal {
-   
+
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     @Override
     public IdentidadeFiscal clone() {
         return null;

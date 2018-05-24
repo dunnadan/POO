@@ -174,11 +174,19 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.faturas = newfaturas;
     }
 
+    /**
+     * Adiciona uma Fatura à lista de faturas de um contribuinte
+     * @param object Fatura
+     */
     public void addFaturas(Fatura object) {
 
         this.faturas.add(object);
     }
 
+    /**
+     * Retira uma Fatura da lista de faturas de um contribuinte
+     * @param fatura
+     */
     public void removeFaturas(Fatura fatura) {
 
         if (this.faturas.contains(fatura))
