@@ -13,7 +13,7 @@ public class Fatura implements java.io.Serializable {
     private String descricao;
     private List<Atividade> historico;
     private double valor;
-    private LocalDateTime data;
+    private LocalDate data;
 
     //Constructors
     public Fatura(){
@@ -24,7 +24,7 @@ public class Fatura implements java.io.Serializable {
         this.descricao = "";
         this.historico = new ArrayList<>();
         this.valor = 0;
-        this.data = LocalDateTime.now();
+        this.data = LocalDate.now();
 
     }
 
@@ -36,7 +36,7 @@ public class Fatura implements java.io.Serializable {
         this.descricao = descricao;
         this.historico = new ArrayList<>();
         this.valor = valor;
-        this.data = LocalDateTime.now();
+        this.data = LocalDate.now();
 
         this.historico.add(atividade);
     }
@@ -70,11 +70,11 @@ public class Fatura implements java.io.Serializable {
         this.nif_emitente = nif;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return this.data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -100,6 +100,34 @@ public class Fatura implements java.io.Serializable {
 
     public void setHistorico(Atividade atividade) {
         this.historico.add(atividade);
+    }
+
+    public void setHistorico(String atividade) {
+
+        if (atividade.toUpperCase().equals("LAZER")){
+            Atividade atv = new AtividadeLazer("Lazer");
+            this.historico.add(atv);
+        }
+        if (atividade.toUpperCase().equals("SAUDE")){
+            Atividade atv = new AtividadeSaude("Saude");
+            this.historico.add(atv);
+        }
+        if (atividade.toUpperCase().equals("EDUCACAO") || atividade.toUpperCase().equals("EDUCAÇAO")){
+            Atividade atv = new AtividadeEducacao("Educaçao");
+            this.historico.add(atv);
+        }
+        if (atividade.toUpperCase().equals("ALIMENTACAO") || atividade.toUpperCase().equals("ALIMENTAÇAO")){
+            Atividade atv = new AtividadeAlimentacao("Alimentaçao");
+            this.historico.add(atv);
+        }
+        if (atividade.toUpperCase().equals("TRANSPORTE")){
+            Atividade atv = new AtividadeTransportes("Transporte");
+            this.historico.add(atv);
+        }
+        if (atividade.toUpperCase().equals("PENDENTE")){
+            Atividade atv = new AtividadePendente("Pendente");
+            this.historico.add(atv);
+        }
     }
 
     public double getValor() {

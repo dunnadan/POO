@@ -150,6 +150,35 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.atividades.add(atividade);
     }
 
+    public void addAtividades(String atividade) {
+
+        if (atividade.toUpperCase().equals("LAZER")){
+            Atividade atv = new AtividadeLazer("Lazer");
+            this.addAtividades(atv);
+        }
+        if (atividade.toUpperCase().equals("SAUDE")){
+            Atividade atv = new AtividadeSaude("Saude");
+            this.addAtividades(atv);
+        }
+        if (atividade.toUpperCase().equals("EDUCACAO") || atividade.toUpperCase().equals("EDUCAÇAO")){
+            Atividade atv = new AtividadeEducacao("Educaçao");
+            this.addAtividades(atv);
+        }
+        if (atividade.toUpperCase().equals("ALIMENTACAO") || atividade.toUpperCase().equals("ALIMENTAÇAO")){
+            Atividade atv = new AtividadeAlimentacao("Alimentaçao");
+            this.addAtividades(atv);
+        }
+        if (atividade.toUpperCase().equals("TRANSPORTE")){
+            Atividade atv = new AtividadeTransportes("Transporte");
+            this.addAtividades(atv);
+        }
+        if (atividade.toUpperCase().equals("PENDENTE")){
+            Atividade atv = new AtividadePendente("Pendente");
+            this.addAtividades(atv);
+        }
+    }
+
+
     public void removeAtividades(Atividade atividade) {
         if (this.atividades.contains(atividade))
             this.atividades.remove(atividade);

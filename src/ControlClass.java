@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.time.format.DateTimeFormatter;
@@ -132,10 +132,10 @@ public class ControlClass {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         System.out.println("Data de início: dd/mm/yyyy");
-        LocalDateTime inicio = LocalDateTime.parse(sc.nextLine(), formatter);
+        LocalDate inicio = LocalDate.parse(sc.nextLine(), formatter);
 
         System.out.println("Data de término: dd/mm/yyyy");
-        LocalDateTime fim = LocalDateTime.parse(sc.nextLine(), formatter);
+        LocalDate fim = LocalDate.parse(sc.nextLine(), formatter);
 
         sc.close();
 

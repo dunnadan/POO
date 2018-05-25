@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
      * @param fim fim do periodo
      * @return Valor faturado
      */
-    public double totalFaturadoTempo(LocalDateTime inicio, LocalDateTime fim){
+    public double totalFaturadoTempo(LocalDate inicio, LocalDate fim){
 
         List<Fatura> faturas = new ArrayList<>();
         faturas = this.getFaturas();
