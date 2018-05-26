@@ -6,13 +6,38 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
 
 
     private static final long serialVersionUID = 1L;
+    /**
+     * NIF da identidade
+     */
 	private int nif;
+    /**
+     * Nome da identidade
+     */
     private String nome;
+    /**
+     * email da identidade
+     */
     private String email;
+    /**
+     * morada da identidade
+     */
     private String morada;
+    /**
+     * password da conta
+     */
     private String password;
+    /**
+     * coeficiente associado à identidade
+     */
     private double coeficiente;
+
+    /**
+     * lista de atividades possiveis de dedução
+     */
     private List<Atividade> atividades;
+    /**
+     * lista de faturas associadas à identidade
+     */
     private List<Fatura> faturas;
 
 
@@ -150,6 +175,10 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         this.atividades.add(atividade);
     }
 
+    /**
+     * Adiciona uma atividade à lista que contém as ativiades que o contribuinte pode deduzir despezas
+     * @param atividade nome da atividade
+     */
     public void addAtividades(String atividade) {
 
         if (atividade.toUpperCase().equals("LAZER")){
@@ -178,11 +207,15 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
         }
     }
 
-
+    /**
+     * Remove uma Atividade da lista que contem as atividades deduziveis
+     * @param atividade atividade
+     */
     public void removeAtividades(Atividade atividade) {
         if (this.atividades.contains(atividade))
             this.atividades.remove(atividade);
     }
+
 
     public List<Fatura> getFaturas() {
         List<Fatura> newfaturas = new ArrayList<>();

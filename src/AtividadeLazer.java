@@ -17,7 +17,7 @@ public class AtividadeLazer extends Atividade implements Serializable{
      * @param nome nome da atividade
      */
     public AtividadeLazer(String nome){
-        super(nome);
+        super("Lazer");
     }
     /**
      * Contrutor por Objeto
