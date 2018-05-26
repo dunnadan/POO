@@ -103,7 +103,7 @@ public class ControlClass {
 
     //********************************* FUNCIONALIDADES DAS EMPRESAS ********************************//
 
-    //lista das faturas de uma empresa referentes a um determinado contribuinte
+    //lista as faturas de uma empresa referentes a um determinado contribuinte
     private static List<Fatura> listFatEmpresaData(Empresa individual) {
 
         Scanner sc = new Scanner(System.in);
@@ -157,12 +157,22 @@ public class ControlClass {
     }
 
     //TODO calcular o total de deduçao delas
+    /**
+     * Cria uma coleção com os 10 Empresas que mais faturam no sistema
+     * @return Lista de Empresas
+     */
     private static List<Empresa> relacao10Empresas() {
 
         return AppFunc.getAllEmpresas().stream().sorted(new EmpresaComparatorValor()).limit(10)
                 .collect(Collectors.toList());
     }
 
+
+    /**
+     * Cria uma coleção com os 10 Contribuintes individuais que mais gastam em todo
+     * o sistema
+     * @return Lista de Contribuintes
+     */
     private static List<Contribuinte> relacao10Contribuintes() {
 
         return AppFunc.getAllContribuintes().stream()

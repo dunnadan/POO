@@ -156,9 +156,9 @@ public class Fatura implements java.io.Serializable {
                 && (this.nif_emitente == f.nif_emitente)
                 && (this.nif_cliente == f.nif_cliente)
                 && this.descricao.equals(f.getDescricao())
-                && (this.historico == f.getHistorico())
+                && (this.historico.equals(f.getHistorico()))
                 && (this.valor == f.getValor())
-                && (this.data == f.getData()));
+                && (this.data.equals(f.getData())));
     }
 
     @Override

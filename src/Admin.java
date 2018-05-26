@@ -1,6 +1,13 @@
 public class Admin extends IdentidadeFiscal {
 
     /**
+     * Construtor de Admin
+     */
+    public Admin(){
+        super();
+    }
+
+    /**
      * {@inheritDoc}
      * @return
      */

@@ -179,8 +179,8 @@ public class Empresa extends IdentidadeFiscal  implements java.io.Serializable {
      * @param o Objeto
      * @return
      */
-    public boolean equals(Object o){
-        return super.equals(o);
+    public boolean equals(Empresa o){
+        return super.equals(o) && this.concelho.equals(o.getConcelho());
     }
 
     /**

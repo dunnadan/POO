@@ -26,7 +26,7 @@ public class AppFunc {
         IdentidadeFiscal cont = db.get(nif);
 
         if (cont != null && cont instanceof Contribuinte) {
-            return (Contribuinte) cont;
+            return (Contribuinte) cont.clone();
         }
         
         else
@@ -34,13 +34,16 @@ public class AppFunc {
     }
 
     public static List<Empresa> getAllEmpresas(){
-        return db.values().stream().filter(Empresa.class::isInstance).map(Empresa.class::cast)
+        List<Empresa> list = db.values().stream()
+                .filter(identidadeFiscal -> identidadeFiscal instanceof Empresa)
+                .map(identidadeFiscal -> (Empresa) identidadeFiscal).map(Empresa::clone)
                 .collect(Collectors.toList());
+        return list;
     }
 
     public static List<Contribuinte> getAllContribuintes(){
         return db.values().stream().filter(Contribuinte.class::isInstance).map(Contribuinte.class::cast)
-                .collect(Collectors.toList());
+                .map(Contribuinte::clone).collect(Collectors.toList());
     }
 
 
