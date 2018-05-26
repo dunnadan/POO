@@ -22,7 +22,7 @@ public class Concelhos {
     }
 
     /**
-     * Verifica se o concelhoe do interior
+     * Verifica se o concelho é do interior
      * @param c concelho
      * @return boolean
      */

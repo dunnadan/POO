@@ -9,7 +9,7 @@ public abstract class Atividade {
     //CONSTRUCTORS
 
     /**
-     * Contrutor Atividade
+     * Construtor Atividade
      * @param nome nome da atividade
      */
     public Atividade(String nome){
