@@ -7,6 +7,10 @@ import java.util.List;
 
 public class CSVReader {
 
+    /**
+     * Parser de um arquivo csv
+     * @param file Arquivo csv
+     */
     public static ArrayList<ArrayList<String>> readFile(String file){
 
         ArrayList<ArrayList<String>> ret = new ArrayList<ArrayList<String>>();

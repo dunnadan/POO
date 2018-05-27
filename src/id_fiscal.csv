@@ -1,0 +1,36 @@
+contribuinte;1;Individuo1;1@email.com;Rua 1;1;0.01;Educaçao,Transportes;23,34,45,56
+contribuinte;2;Individuo2;2@email.com;Rua 2;2;0.02;Saude,Educaçao,Transportes;1312,32423,23543,32534,34535
+contribuinte;3;Individuo3;3@email.com;Rua 3;3;0.03;Lazer,Saude,Educaçao;873528734,983489,9834893
+contribuinte;4;Individuo4;4@email.com;Rua 4;4;0.04;Lazer,Educaçao,Transportes;
+contribuinte;5;Individuo5;5@email.com;Rua 5;5;0.05;Educaçao,Transportes;
+contribuinte;6;Individuo6;6@email.com;Rua 6;6;0.06;Lazer,Transportes;84558
+contribuinte;7;Individuo7;7@email.com;Rua 7;7;0.07;Lazer;84383,483939393
+contribuinte;8;Individuo8;8@email.com;Rua 8;8;0.08;Saude;
+contribuinte;9;Individuo9;9@email.com;Rua 9;9;0.09;Saude;
+contribuinte;10;Individuo10;10@email.com;Rua 10;10;0.1;Educaçao,Transportes;7373783,274,3732,73,243
+contribuinte;11;Individuo11;11@email.com;Rua 11;11;0.11;Saude,Educaçao,Transportes;345678,456789
+contribuinte;12;Individuo12;12@email.com;Rua 12;12;0.12;Lazer,Saude,Educaçao,Transportes;98
+contribuinte;13;Individuo13;13@email.com;Rua 13;13;0.13;Lazer,Educaçao,Transportes;9876,987
+contribuinte;14;Individuo14;14@email.com;Rua 14;14;0.14;Lazer,Saude,Educaçao,Transportes;
+contribuinte;15;Individuo15;15@email.com;Rua 15;15;0.15;Educaçao,Transportes;4554
+contribuinte;16;Individuo16;16@email.com;Rua 16;16;0.16;Lazer,Transportes;8787870,80769697
+contribuinte;17;Individuo17;17@email.com;Rua 17;17;0.17;Educaçao;1223
+contribuinte;18;Individuo18;18@email.com;Rua 18;18;0.18;Lazer,Transportes;
+contribuinte;19;Individuo19;19@email.com;Rua 19;19;0.19;Lazer,Saude,Educaçao,Transportes;100033
+contribuinte;20;Individuo20;20@email.com;Rua 20;20;0.2;Saude;63263,7843783
+empresa;21;Empresa1;1@email.pt;Rua 1;21;0.1;Lazer;Vila Real
+empresa;22;Empresa2;2@email.pt;Rua 2;22;0.3;Educaçao;Lisboa
+empresa;23;Empresa3;3@email.pt;Rua 3;23;0.1;Saude;Porto
+empresa;24;Empresa4;4@email.pt;Rua 4;24;0.5;Alimentaçao;Maia
+empresa;25;Empresa5;5@email.pt;Rua 5;25;0.2;Transportes;Braga
+empresa;26;Empresa6;6@email.pt;Rua 6;26;0.1;Lazer,Educaçao;Vila Verde
+empresa;27;Empresa7;7@email.pt;Rua 7;27;0.1;Educaçao;Chaves
+empresa;28;Empresa8;8@email.pt;Rua 8;28;0.3;Saude;Mirandela
+empresa;29;Empresa9;8@email.pt;Rua 9;29;0.1;Alimentaçao,Transportes;Setubal
+empresa;30;Empresa10;10@email.pt;Rua 10;30;0.4;Transportes;Aveiro
+empresa;31;Empresa11;11@email.pt;Rua 11;31;0.1;Lazer;Figueira da Foz
+empresa;32;Empresa12;12@email.pt;Rua 12;32;0.6;Educaçao;Coimbra
+empresa;33;Empresa13;13@email.pt;Rua 13;33;0.1;Saude;Vila do Conde
+empresa;34;Empresa14;14@email.pt;Rua 14;34;0.2;Alimentaçao;Boticas
+empresa;35;Empresa15;15@email.pt;Rua 15;35;0.1;Transportes;Murça
+admin;0;admin;0

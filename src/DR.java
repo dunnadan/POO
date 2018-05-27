@@ -8,7 +8,12 @@ public class DR {
 
     private static Map<Integer,IdentidadeFiscal> db = new HashMap<>();
 
-    private static void newDataBase(String id_fiscal_file, String fatura_file){
+    /**
+     * Lê arquivo csv, popula a base de dados e salva em um arquivo
+     * @param id_fiscal_file Arquivo csv com os dados das indentidades fiscais a criar
+     * @param fatura_file Arquivo csv com as faturas a criar
+     */
+    public static void newDataBase(String id_fiscal_file, String fatura_file){
         
         ArrayList<ArrayList<String>> id_fiscal = CSVReader.readFile(id_fiscal_file);
 
@@ -34,7 +39,7 @@ public class DR {
                 db.put(cont.getNIF(), cont);
             }
 
-            else {
+            else if (id.get(0).toLowerCase().equals("empresa")){
                 Empresa emp = new Empresa();
 
                 emp.setNIF(Integer.valueOf(id.get(1)));
@@ -47,7 +52,19 @@ public class DR {
                 for (String atv : id.get(7).split(","))
                     emp.addAtividades(atv.toUpperCase());
 
+                emp.setConcelho(id.get(8));
+
                 db.put(emp.getNIF(), emp);
+            }
+
+            else {
+                Admin adm = new Admin();
+
+                adm.setNIF(Integer.valueOf(id.get(1)));
+                adm.setNome(id.get(2));
+                adm.setPassword(id.get(3));
+
+                db.put(adm.getNIF(), adm);
             }
         }
 
@@ -79,9 +96,5 @@ public class DR {
         }
 
         DataBase.saveData(db);
-    }
-
-    public static void main(String args[]){
-        newDataBase("/home/leonardo/id_fiscal.csv", "/home/leonardo/fatura.csv");
     }
 }

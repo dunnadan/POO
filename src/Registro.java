@@ -5,6 +5,11 @@ public class Registro {
 
     private static Scanner sc = new Scanner(System.in);
 
+    /**
+     * Faz o cadastro de um novo contribuinte
+     * @param db Base de dados
+     */
+
     public static void contribuinte(Map<Integer,IdentidadeFiscal> db) throws ExistentUserException{
         
         IdentidadeFiscal id = new Contribuinte();
@@ -33,9 +38,13 @@ public class Registro {
             throw new ExistentUserException(id.getNIF());
     }
 
+    /**
+     * Faz o cadastro de uma nova empresa
+     * @param sb Base de dados
+     */
     public static void empresa(Map<Integer,IdentidadeFiscal> db) throws ExistentUserException{
         
-        IdentidadeFiscal id = new Empresa();
+        Empresa id = new Empresa();
 
         System.out.print("Nome: ");
         id.setNome(sc.nextLine());
@@ -48,6 +57,9 @@ public class Registro {
 
         System.out.print("Password: ");
         id.setPassword(sc.nextLine());
+
+        System.out.print("Concelho: ");
+        id.setConcelho(sc.nextLine());
 
         System.out.print("Morada: ");
         id.setMorada(sc.nextLine());

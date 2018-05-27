@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.time.format.DateTimeFormatter;
@@ -20,9 +21,11 @@ public class ControlClass {
                     break;
 
                 case 3:
+                    associa_atv_fatura(cont);
                     break;
 
                 case 4:
+                    associa_atv_fatura(cont);
                     break;
 
                 case 5:
@@ -95,9 +98,35 @@ public class ControlClass {
 
         else {
 
-            Admin adm = (Admin) id_fiscal;
+            switch(ctl){
+                case 1:
+                    try{
+                        System.out.println(listFaturaEmpresa());
+                        break;
+                    }
+                    catch (NonExistentUserException e){
+                        System.out.println("Usuário não existe.");
+                    }
 
+                case 2:
+                    System.out.println(valorFaturadoTempo());
+                    break;
 
+                case 3:
+                    System.out.println(relacao10Contribuintes());
+                    break;
+
+                case 4:
+                    System.out.println(relacao10Empresas());
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    actions(id_fiscal, ctl);
+                    break;
+            }
         }
     }
 
@@ -126,6 +155,19 @@ public class ControlClass {
         return ret;
     }
 
+    public static List<Fatura> listFaturaEmpresa() throws NonExistentUserException {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("NIF: ");
+        int nif = Integer.valueOf(sc.nextLine());
+
+        Empresa emp = AppFunc.getEmpresa(nif);
+
+        sc.close();
+
+        return emp.getFaturas();
+    }
+
     //total faturado num intervalo de tempo
     private static double valorFaturadoTempo(Empresa individual){
         Scanner sc = new Scanner(System.in);
@@ -133,15 +175,41 @@ public class ControlClass {
 
         System.out.println("Data de início: dd/mm/yyyy");
         LocalDate inicio = LocalDate.parse(sc.nextLine(), formatter);
-
+        
         System.out.println("Data de término: dd/mm/yyyy");
         LocalDate fim = LocalDate.parse(sc.nextLine(), formatter);
-
-        sc.close();
-
-        return individual.totalFaturadoTempo(inicio,fim);
-
         
+        sc.close();
+        
+        return individual.totalFaturadoTempo(inicio,fim);
+    }
+    
+
+    private static double valorFaturadoTempo(){
+        Scanner sc = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try{
+            System.out.print("NIF: ");
+            Empresa individual = AppFunc.getEmpresa(Integer.valueOf(sc.nextLine()));
+
+            System.out.println("Data de início: dd/mm/yyyy");
+            LocalDate inicio = LocalDate.parse(sc.nextLine(), formatter);
+
+            System.out.println("Data de término: dd/mm/yyyy");
+            LocalDate fim = LocalDate.parse(sc.nextLine(), formatter);
+
+            sc.close();
+
+            return individual.totalFaturadoTempo(inicio,fim);
+        }
+
+        catch (NonExistentUserException e){
+            System.out.println("Usuário não existe.");
+            sc.close();
+        }
+
+        return 0;       
     }
 
     //lista de faturas de uma empresa ordenada por data
@@ -255,15 +323,26 @@ public class ControlClass {
         return atv;
     }
 
-    
-
-
     private static void addDependente(Contribuinte id){
         Scanner sc = new Scanner(System.in);
 
         System.out.print("NIF dependente: ");
         id.addDependente(Integer.valueOf(sc.nextLine()));
         System.out.println("Dependente adicionado!\n");
+
+        sc.close();
+    }
+
+    private static void associa_atv_fatura(Contribuinte cont){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Escolha, pelo ídice, a fatura a ser modificada");
+        int index = Integer.valueOf(sc.nextLine());
+
+        Fatura fat = cont.getFaturas().get(index);
+        Atividade atv = addAtividade_IO();
+        
+        fat.setHistorico(atv);
 
         sc.close();
     }

@@ -6,6 +6,11 @@ public class AppFunc {
     private static IdentidadeFiscal id_fiscal;
     private static Map<Integer, IdentidadeFiscal> db = DataBase.loadData();
 
+    /**
+     * Autentica um usuário na aplicação
+     * @param nif NIF do usuário
+     * @param password Senha do usuário
+     */
     private static void login(Integer nif, String password) throws WrongPasswordException, NonExistentUserException {
 
         id_fiscal = db.get(nif);
@@ -21,18 +26,45 @@ public class AppFunc {
     }
 
 
+    /**
+     * Busca um contribuinte na base de dados
+     * @param nif NIF do contribuinte
+     * @return O contribuinte procurado 
+     */
     public static Contribuinte getContribuinte(int nif) throws NonExistentUserException {
 
         IdentidadeFiscal cont = db.get(nif);
 
         if (cont != null && cont instanceof Contribuinte) {
-            return (Contribuinte) cont.clone();
+            return (Contribuinte) cont;
         }
         
         else
             throw new NonExistentUserException();
     }
 
+    /**
+     * Busca umq empresa na base de dados
+     * @param nif NIF da empresa
+     * @return A empresa procurado 
+     */
+    public static Empresa getEmpresa(int nif) throws NonExistentUserException {
+
+        IdentidadeFiscal emp = db.get(nif);
+
+        if (emp != null && emp instanceof Empresa) {
+            return (Empresa) emp;
+        }
+        
+        else
+            throw new NonExistentUserException();
+    }
+
+
+    /**
+     * Lista de todas as empresas na base da dados.
+     * @return Lista com todas as empresas na base da dados
+     */
     public static List<Empresa> getAllEmpresas(){
         List<Empresa> list = db.values().stream()
                 .filter(identidadeFiscal -> identidadeFiscal instanceof Empresa)
@@ -41,13 +73,19 @@ public class AppFunc {
         return list;
     }
 
+    /**
+     * Lista de todos os contribuintes na base da dados.
+     * @return Lista com todos os contribuintes na base da dados
+     */
     public static List<Contribuinte> getAllContribuintes(){
         return db.values().stream().filter(Contribuinte.class::isInstance).map(Contribuinte.class::cast)
                 .map(Contribuinte::clone).collect(Collectors.toList());
     }
 
 
-
+    /**
+     * Faz o registro de um usuário na aplicação
+     */
     public static void register() {
 
         Scanner sc = new Scanner(System.in);
@@ -88,6 +126,9 @@ public class AppFunc {
         }
     }
 
+    /**
+     * Faz login na aplicação
+     */
     public static void enter() {
 
         Scanner sc = new Scanner(System.in);

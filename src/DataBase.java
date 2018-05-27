@@ -7,6 +7,11 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class DataBase {
+
+	/**
+	 * Salva a base da dados da aplicação
+	 * @param source HashMap (base de dados) a ser salvo
+	 */
 	
 	public static void saveData(Map<Integer,IdentidadeFiscal> source){
 
@@ -23,6 +28,10 @@ public class DataBase {
 		}
 	}
 
+	/**
+	 * Faz load da base de dados
+	 * @return Base de dados
+	 */
 	public static Map<Integer,IdentidadeFiscal> loadData(){
 
 		Map<Integer,IdentidadeFiscal> source = new HashMap<>();

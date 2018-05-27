@@ -4,7 +4,9 @@ public class StartApp {
 
     private static Scanner sc = new Scanner(System.in);
 
-    
+    /**
+     * Menu principal da aplicação
+     */
     private static String main_menu(){
 
         return "1. Login\n" +
@@ -12,6 +14,9 @@ public class StartApp {
                "0. Sair da App\n";
     }
 
+    /**
+     * Inicia a aplicação
+     */
     private static void start() {
         
         System.out.println("Escolha uma opção");

@@ -93,8 +93,8 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
      */
     public IdentidadeFiscal(IdentidadeFiscal object) {
 
-        this.atividades = new ArrayList<>();
-        this.faturas = new ArrayList<>();
+        this.atividades = object.getAtividades();
+        this.faturas = object.getFaturas();
         this.nif = object.getNIF();
         this.nome = object.getNome();
         this.email = object.getEmail();
@@ -304,7 +304,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
                 "Email: " + this.email + "\n" +
                 "Coeficiente: " + this.coeficiente + "\n" +
                 "Atividade: " + this.atividades.toString() + "\n" +
-                "Faturas: " + this.faturas.toString() + "\n";
+                "Faturas: " + this.faturas.toString() + "\n\n";
     }
 
     public abstract String menu();
