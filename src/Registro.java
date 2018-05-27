@@ -9,7 +9,6 @@ public class Registro {
      * Faz o cadastro de um novo contribuinte
      * @param db Base de dados
      */
-
     public static void contribuinte(Map<Integer,IdentidadeFiscal> db) throws ExistentUserException{
         
         IdentidadeFiscal id = new Contribuinte();
@@ -40,7 +39,7 @@ public class Registro {
 
     /**
      * Faz o cadastro de uma nova empresa
-     * @param sb Base de dados
+     * @param db Base de dados
      */
     public static void empresa(Map<Integer,IdentidadeFiscal> db) throws ExistentUserException{
         

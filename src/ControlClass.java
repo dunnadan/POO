@@ -7,6 +7,11 @@ import java.time.format.DateTimeFormatter;
 
 public class ControlClass {
 
+    /**
+     * Ação que cada contribuinte pode realizar na aplicação
+     * @param id_fiscal Identidade fiscal
+     * @param ctl Ação pretendida
+     */
     public static void actions(IdentidadeFiscal id_fiscal, int ctl) {
         if (id_fiscal instanceof Contribuinte){
 
@@ -132,7 +137,11 @@ public class ControlClass {
 
     //********************************* FUNCIONALIDADES DAS EMPRESAS ********************************//
 
-    //lista as faturas de uma empresa referentes a um determinado contribuinte
+    /**
+     * lista as faturas de uma empresa referentes a um determinado contribuinte
+     * @param individual A Empresa
+     * @return Lista com as faturas de um determinado contribuinte, ordenada por data
+     */
     private static List<Fatura> listFatEmpresaData(Empresa individual) {
 
         Scanner sc = new Scanner(System.in);
@@ -144,6 +153,11 @@ public class ControlClass {
         return ret;         
         }
 
+    /**
+     * lista as faturas de uma empresa referentes a um determinado contribuinte
+     * @param individual A Empresa
+     * @return Lista com as faturas de um determinado contribuinte, ordenada por valor
+     */
     private static List<Fatura> listFatEmpresaValor(Empresa individual){
 
         Scanner sc = new Scanner(System.in);
@@ -155,6 +169,10 @@ public class ControlClass {
         return ret;
     }
 
+    /**
+     * Lista as faturas de uma determinada empresa
+     * @return Lista com as faturas da empresa escolhida
+     */
     public static List<Fatura> listFaturaEmpresa() throws NonExistentUserException {
         Scanner sc = new Scanner(System.in);
 
@@ -168,7 +186,11 @@ public class ControlClass {
         return emp.getFaturas();
     }
 
-    //total faturado num intervalo de tempo
+    /** 
+     * Total faturado num intervalo de tempo
+     * @param individual Empresa
+     * @return O valor faturado entre as datas fornecidas
+     */
     private static double valorFaturadoTempo(Empresa individual){
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -185,6 +207,11 @@ public class ControlClass {
     }
     
 
+    /**
+     * Valor faturado durante um período de tempo por uma empresa.
+     * Método disponível apenas para o administrador da aplicação
+     * @return Total faturado por uma empresa entre as datas fornecidas
+     */
     private static double valorFaturadoTempo(){
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -212,13 +239,19 @@ public class ControlClass {
         return 0;       
     }
 
-    //lista de faturas de uma empresa ordenada por data
+    /**
+     * Lista de faturas de uma empresa ordenada por data
+     * @return Lista de faturas ordenadas por data
+     */
     private static List<Fatura> fatEmpresaData(Empresa individual){
 
         return individual.faturasEmpresaData();
     }
 
-    //lista de faturas de uma empresa ordenada por valor
+    /**
+     * Lista de faturas de uma empresa ordenada por valor
+     * @return Lista de faturas ordanadas por valor
+     */
     private static List<Fatura> fatEmpresaValor(Empresa individual){
 
         return individual.faturasEmpresaValor();
@@ -248,7 +281,10 @@ public class ControlClass {
                 .collect(Collectors.toList());
     }
 
-    //criaçao de fatura por parte de uma empresa
+    /**
+     * Cria uma fatura
+     * @param individual A empresa que está criando a fatura
+     */
     private static void criaFatura(Empresa individual) {
 
         Scanner sc = new Scanner(System.in);
@@ -288,6 +324,10 @@ public class ControlClass {
         }
     }
 
+    /**
+     * Cria uma atividade de modo interativo
+     * @return A atividade criada
+     */
     public static Atividade addAtividade_IO(){
         Scanner sc = new Scanner(System.in);
         Atividade atv;
@@ -323,6 +363,10 @@ public class ControlClass {
         return atv;
     }
 
+    /**
+     * Adiciona um dependete a um contribuinte
+     * @param id Contribuinte
+     */
     private static void addDependente(Contribuinte id){
         Scanner sc = new Scanner(System.in);
 
@@ -333,6 +377,10 @@ public class ControlClass {
         sc.close();
     }
 
+    /**
+     * Associa uma atividade a uma fatura
+     * @param cont Contribuinte realizador da ação
+     */
     private static void associa_atv_fatura(Contribuinte cont){
         Scanner sc = new Scanner(System.in);
 
@@ -343,8 +391,6 @@ public class ControlClass {
         Atividade atv = addAtividade_IO();
         
         fat.setHistorico(atv);
-
-        cont.addFaturas(fat);
 
         sc.close();
     }

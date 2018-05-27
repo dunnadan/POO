@@ -36,7 +36,7 @@ public class AppFunc {
         IdentidadeFiscal cont = db.get(nif);
 
         if (cont != null && cont instanceof Contribuinte) {
-            return (Contribuinte) cont.clone();
+            return (Contribuinte) cont;
         }
         
         else
@@ -53,7 +53,7 @@ public class AppFunc {
         IdentidadeFiscal emp = db.get(nif);
 
         if (emp != null && emp instanceof Empresa) {
-            return (Empresa) emp.clone();
+            return (Empresa) emp;
         }
         
         else
