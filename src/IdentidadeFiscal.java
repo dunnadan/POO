@@ -218,11 +218,7 @@ public abstract class IdentidadeFiscal implements java.io.Serializable {
 
 
     public List<Fatura> getFaturas() {
-        List<Fatura> newfaturas = new ArrayList<>();
-        for (Fatura fat : this.faturas) {
-            newfaturas.add(fat.clone());
-        }
-        return newfaturas;
+        return this.faturas;
     }
 
     public void setFaturas(ArrayList<Fatura> faturas) {

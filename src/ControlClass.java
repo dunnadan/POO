@@ -344,6 +344,8 @@ public class ControlClass {
         
         fat.setHistorico(atv);
 
+        cont.addFaturas(fat);
+
         sc.close();
     }
 
