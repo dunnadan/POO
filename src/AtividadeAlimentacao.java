@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class AtividadeAlimentacao extends Atividade implements Deduzivel, Serializable {
+public class AtividadeAlimentacao extends Atividade implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
@@ -63,5 +63,15 @@ public class AtividadeAlimentacao extends Atividade implements Deduzivel, Serial
     @Override
     public String toString(){
         return "Alimentação";
+    }
+
+    public boolean equals(Object o){
+        if(this == o) 
+            return true;
+        
+        if(o == null || this.getClass() != o.getClass()) 
+            return false;
+
+        return (this.getClass() == o.getClass());
     }
 }

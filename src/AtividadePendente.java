@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class AtividadePendente extends Atividade implements Serializable{
+public class AtividadePendente extends Atividade implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
@@ -27,6 +27,10 @@ public class AtividadePendente extends Atividade implements Serializable{
         super(object);
     }
 
+    public double deduct(Fatura f){
+        return 0;
+    }
+
     /**
      * {@inheritDoc}
      * @return
@@ -44,5 +48,14 @@ public class AtividadePendente extends Atividade implements Serializable{
         return "Pendente";
     }
 
+    public boolean equals(Object o){
+        if(this == o) 
+            return true;
+        
+        if(o == null || this.getClass()!= o.getClass()) 
+            return false;
+
+        return (this.getClass() == o.getClass());
+    }
 
 }

@@ -262,10 +262,16 @@ public class ControlClass {
      * Cria uma coleção com os 10 Empresas que mais faturam no sistema
      * @return Lista de Empresas
      */
-    private static List<Empresa> relacao10Empresas() {
+    private static List<Integer> relacao10Empresas() {
 
-        return AppFunc.getAllEmpresas().stream().sorted(new EmpresaComparatorValor()).limit(10)
-                .collect(Collectors.toList());
+        List<Integer> ret = new ArrayList<>();
+        List<Empresa> list =  AppFunc.getAllEmpresas().stream().sorted(new EmpresaComparatorValor()).limit(10)
+                              .collect(Collectors.toList());
+
+        for (Empresa emp : list)
+            ret.add(emp.getNIF());
+
+        return ret;
     }
 
 
@@ -274,11 +280,17 @@ public class ControlClass {
      * o sistema
      * @return Lista de Contribuintes
      */
-    private static List<Contribuinte> relacao10Contribuintes() {
+    private static List<Integer> relacao10Contribuintes() {
 
-        return AppFunc.getAllContribuintes().stream()
-                .sorted(new ContribuinteComparatorValor()).limit(10)
-                .collect(Collectors.toList());
+        List<Integer> ret = new ArrayList<>();
+        List<Contribuinte> list =  AppFunc.getAllContribuintes().stream()
+                                    .sorted(new ContribuinteComparatorValor()).limit(10)
+                                    .collect(Collectors.toList());
+
+        for (Contribuinte cont : list)
+            ret.add(cont.getNIF());
+
+        return ret;        
     }
 
     /**
@@ -287,23 +299,18 @@ public class ControlClass {
      * @return Valor deduzido
      */
     private static double totalDeduzido(Contribuinte c) throws NonExistentUserException{
-        List<Fatura> fat = c.getFaturas();
+        List<Atividade> atv_list = c.getAtividades();
         double ret = 0;
-        List<Atividade> atv = c.getAtividades();
-        List<Atividade> ativi;
-        Atividade atividade;
-        for (Fatura fatura : fat ) {
-            ativi = fatura.getHistorico();
-            atividade = ativi.get(ativi.size()-1);
-            if(atv.contains(atividade) && atividade instanceof AtividadeSaude)
-                ret += ((AtividadeSaude)atividade).deduct(fatura);
-            if(atv.contains(atividade) && atividade instanceof AtividadeAlimentacao)
-                ret += ((AtividadeAlimentacao) atividade).deduct(fatura);
-            if (atv.contains(atividade) && atividade instanceof AtividadeEducacao)
-                ret += ((AtividadeEducacao) atividade).deduct(fatura);
-            if (atv.contains(atividade) && atividade instanceof AtividadeTransportes)
-                ret += ((AtividadeTransportes) atividade).deduct(fatura);
+        
+        for (Fatura fatura : c.getFaturas()) {
+            
+            int index = fatura.getHistorico().size() -1;
+            Atividade atividade = fatura.getHistorico().get(index);
+            
+            if (atv_list.contains(atividade))
+                ret += atividade.deduct(fatura);
         }
+
         return ret;
     }
 

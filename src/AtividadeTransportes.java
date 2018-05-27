@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class AtividadeTransportes extends Atividade implements Serializable{
+public class AtividadeTransportes extends Atividade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -60,5 +60,15 @@ public class AtividadeTransportes extends Atividade implements Serializable{
     @Override
     public String toString(){
         return "Transporte";
+    }
+
+    public boolean equals(Object o){
+        if(this == o) 
+            return true;
+        
+        if(o == null || this.getClass()!= o.getClass()) 
+            return false;
+
+        return (this.getClass() == o.getClass());
     }
 }

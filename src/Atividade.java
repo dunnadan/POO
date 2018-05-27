@@ -57,5 +57,7 @@ public abstract class Atividade {
      */
     public abstract Atividade clone();
 
+    public abstract double deduct(Fatura f) throws NonExistentUserException;
+
 
     }
