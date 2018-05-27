@@ -409,14 +409,23 @@ public class ControlClass {
      */
     private static void associa_atv_fatura(Contribuinte cont){
         Scanner sc = new Scanner(System.in);
+        int i = 1;
 
         System.out.println("Escolha, pelo ídice, a fatura a ser modificada");
-        int index = Integer.valueOf(sc.nextLine());
+
+        for (Fatura f : cont.getFaturas()){
+            System.out.println(i + ". [" + f + "]");
+            i++;
+        }
+
+        int index = Integer.valueOf(sc.nextLine()) -1;
 
         Fatura fat = cont.getFaturas().get(index);
         Atividade atv = addAtividade_IO();
         
         fat.setHistorico(atv);
+
+        System.out.println("Atividade associada.\nNova fatura: [" + fat + "]");
 
         sc.close();
     }
