@@ -15,7 +15,9 @@ public class Fatura implements java.io.Serializable {
     private double valor;
     private LocalDate data;
 
-    //Constructors
+    /**
+     * Construtor vazio
+     */
     public Fatura(){
 
         this.numero = "";
@@ -28,6 +30,15 @@ public class Fatura implements java.io.Serializable {
 
     }
 
+    /**
+     * Construtor parametrizado
+     * @param numero numero da fatura
+     * @param nif_emitente nif do emitente
+     * @param nif_cliente nif do cliente
+     * @param descricao descriçao da fatura
+     * @param atividade ativiade associada
+     * @param valor valor da fatura
+     */
     public Fatura(String numero, int nif_emitente, int nif_cliente, String descricao, Atividade atividade, double valor){
 
         this.numero = numero;
@@ -41,6 +52,10 @@ public class Fatura implements java.io.Serializable {
         this.historico.add(atividade);
     }
 
+    /**
+     * Contrutor po objeto
+     * @param object objeto
+     */
     public Fatura(Fatura object){
 
         this.numero = object.getNumero();
@@ -142,11 +157,20 @@ public class Fatura implements java.io.Serializable {
         return this.historico.get(this.historico.size() - 1).clone();
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     @Override
     public Fatura clone(){
         return new Fatura(this);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param o objeto
+     * @return
+     */
     public boolean equals(Object o){
 
         if(this == o) return true;
@@ -161,6 +185,10 @@ public class Fatura implements java.io.Serializable {
                 && (this.data.equals(f.getData())));
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     @Override
     public String toString() {
         return "Numero = " + numero +

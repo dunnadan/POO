@@ -54,6 +54,10 @@ public class AtividadeSaude extends Atividade implements Serializable {
         return x*ded;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     @Override
     public String toString(){
         return "Saúde";
