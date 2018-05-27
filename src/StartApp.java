@@ -40,7 +40,7 @@ public class StartApp {
 
 
     public static void main(String[] args) {
-
+    DR.newDataBase("id_fiscal.csv", "fatura.csv");
         start();
     }
 }

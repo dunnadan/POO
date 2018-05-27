@@ -12,7 +12,7 @@ public class ControlClass {
      * @param id_fiscal Identidade fiscal
      * @param ctl Ação pretendida
      */
-    public static void actions(IdentidadeFiscal id_fiscal, int ctl) {
+    public static void actions(IdentidadeFiscal id_fiscal, int ctl) throws NonExistentUserException {
         if (id_fiscal instanceof Contribuinte){
 
             Contribuinte cont = (Contribuinte) id_fiscal;
@@ -23,6 +23,7 @@ public class ControlClass {
                     break;
 
                 case 2:
+                    System.out.println(ControlClass.totalDeduzido(cont));
                     break;
 
                 case 3:
@@ -257,7 +258,6 @@ public class ControlClass {
         return individual.faturasEmpresaValor();
     }
 
-    //TODO calcular o total de deduçao delas
     /**
      * Cria uma coleção com os 10 Empresas que mais faturam no sistema
      * @return Lista de Empresas
@@ -279,6 +279,32 @@ public class ControlClass {
         return AppFunc.getAllContribuintes().stream()
                 .sorted(new ContribuinteComparatorValor()).limit(10)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Calcula o total deduzido por um contribuinte
+     * @param c Contribuinte
+     * @return Valor deduzido
+     */
+    private static double totalDeduzido(Contribuinte c) throws NonExistentUserException{
+        List<Fatura> fat = c.getFaturas();
+        double ret = 0;
+        List<Atividade> atv = c.getAtividades();
+        List<Atividade> ativi;
+        Atividade atividade;
+        for (Fatura fatura : fat ) {
+            ativi = fatura.getHistorico();
+            atividade = ativi.get(ativi.size()-1);
+            if(atv.contains(atividade) && atividade instanceof AtividadeSaude)
+                ret += ((AtividadeSaude)atividade).deduct(fatura);
+            if(atv.contains(atividade) && atividade instanceof AtividadeAlimentacao)
+                ret += ((AtividadeAlimentacao) atividade).deduct(fatura);
+            if (atv.contains(atividade) && atividade instanceof AtividadeEducacao)
+                ret += ((AtividadeEducacao) atividade).deduct(fatura);
+            if (atv.contains(atividade) && atividade instanceof AtividadeTransportes)
+                ret += ((AtividadeTransportes) atividade).deduct(fatura);
+        }
+        return ret;
     }
 
     /**
