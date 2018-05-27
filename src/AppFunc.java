@@ -31,12 +31,12 @@ public class AppFunc {
      * @param nif NIF do contribuinte
      * @return O contribuinte procurado 
      */
-    public static Contribuinte getContribuinte(int nif) throws NonExistentUserException {
+    public  static Contribuinte getContribuinte(int nif) throws NonExistentUserException {
 
         IdentidadeFiscal cont = db.get(nif);
 
         if (cont != null && cont instanceof Contribuinte) {
-            return (Contribuinte) cont;
+            return (Contribuinte) cont.clone();
         }
         
         else
@@ -53,7 +53,7 @@ public class AppFunc {
         IdentidadeFiscal emp = db.get(nif);
 
         if (emp != null && emp instanceof Empresa) {
-            return (Empresa) emp;
+            return (Empresa) emp.clone();
         }
         
         else

@@ -39,12 +39,20 @@ public class AtividadeTransportes extends Atividade implements Serializable{
      * @param f Fatura
      * @return valor deduzido
      */
-    public double deduct(Fatura f){
+    public double deduct(Fatura f) throws NonExistentUserException{
 
         double x = f.getValor();
-        return x * 0.15;
+        Contribuinte cont = AppFunc.getContribuinte(f.getNIFCliente());
+        double ded = cont.getCoeficiente();
+        if(Concelhos.contemConcelho(AppFunc.getEmpresa(f.getNIFEmitente()).getConcelho())) {
+            ded +=0.05;
+        }
+        if(cont.getDependentes().size()>3) {
+            ded +=0.05;
+        }
+        if(x*ded > 100) return 100;
+        return x*ded;
     }
-
     /**
      * {@inheritDoc}
      * @return

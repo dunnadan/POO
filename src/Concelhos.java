@@ -26,7 +26,7 @@ public class Concelhos {
      * @param c concelho
      * @return boolean
      */
-    public boolean contemConcelho(String c){
+    public static boolean contemConcelho(String c){
         return concelhos.contains(c);
     }
 

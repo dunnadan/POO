@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class AtividadeAlimentacao extends Atividade implements Serializable{
+public class AtividadeAlimentacao extends Atividade implements Deduzivel, Serializable {
 
 
     private static final long serialVersionUID = 1L;
@@ -33,10 +33,19 @@ public class AtividadeAlimentacao extends Atividade implements Serializable{
      * @param f Fatura
      * @return valor deduzido
      */
-    public double deduct(Fatura f){
+    public double deduct(Fatura f) throws NonExistentUserException{
 
         double x = f.getValor();
-        return x * 0.20;
+        Contribuinte cont = AppFunc.getContribuinte(f.getNIFCliente());
+        double ded = cont.getCoeficiente();
+        if(Concelhos.contemConcelho(AppFunc.getEmpresa(f.getNIFEmitente()).getConcelho())) {
+            ded +=0.05;
+        }
+        if(cont.getDependentes().size()>3) {
+            ded +=0.05;
+        }
+        if(x*ded > 250) return 250;
+        return x*ded;
     }
 
     /**

@@ -39,10 +39,19 @@ public class AtividadeSaude extends Atividade implements Serializable{
      * @param f Fatura
      * @return valor deduzido
      */
-    public double deduct(Fatura f){
+    public double deduct(Fatura f) throws NonExistentUserException{
 
         double x = f.getValor();
-        return x * 0.15;
+        Contribuinte cont = AppFunc.getContribuinte(f.getNIFCliente());
+        double ded = cont.getCoeficiente() + 0.15;
+        if(Concelhos.contemConcelho(AppFunc.getEmpresa(f.getNIFEmitente()).getConcelho())) {
+            ded +=0.05;
+        }
+        if(cont.getDependentes().size()>3) {
+            ded +=0.05;
+        }
+        if(x*ded > 1200) return 1200;
+        return x*ded;
     }
 
     @Override
