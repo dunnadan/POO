@@ -1,0 +1,193 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University Assignment Title Page 
+% LaTeX Template
+% Version 1.0 (27/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% WikiBooks (http://en.wikibooks.org/wiki/LaTeX/Title_Creation)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+% Instructions for using this template:
+% This title page is capable of being compiled as is. This is not useful for 
+% including it in another document. To do this, you have two options: 
+%
+% 1) Copy/paste everything between \begin{document} and \end{document} 
+% starting at \begin{titlepage} and paste this into another LaTeX file where you 
+% want your title page.
+% OR
+% 2) Remove everything outside the \begin{titlepage} and \end{titlepage} and 
+% move this file to the same directory as the LaTeX file you wish to add it to. 
+% Then add \input{./title_page_1.tex} to your LaTeX file where you want your
+% title page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\title{Title page with logo}
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[labelformat=empty]{caption}
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textbf{\textsc{\LARGE Universidade do Minho}}\\[1.5cm] % Name of your university/college
+\textsc{\Large Mestrado Integrado em Engenharia Informática}\\[0.5cm] % Major heading such as course name
+\textsc{\large Programação orientada a objetos}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Java Fatura}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushleft} \large
+%\emph{Authors:}\\
+%Bruno Martins A.....
+%Leonardo Neri A.....
+%Márcio Sousa  A82400 % Your name
+%\end{flushleft}
+%\end{minipage}
+%~
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushright} \large
+%\emph{Supervisor:} \\
+%Dr. James \textsc{Smith} % Supervisor's Name
+%\end{flushright}
+%\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+\Large \emph{Membros do Grupo 36}\\
+%Bruno Martins A.....
+%Leonardo Neri A.....
+%Márcio Sousa A82400\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{bruno.jpg}
+  \caption{Bruno Martins A80410}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{leonardo.jpg}
+  \caption{Leonardo Neri A80056}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{eu.jpg}
+  \caption{Márcio Sousa A82400}
+\endminipage
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\includegraphics{logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\section{Introdução}
+Este projeto teve como objetivo criar um programa em Java que permitisse aos contribuintes aceder à informação referente às faturas que foram emitidas em seu nome, semelhante a uma plataforma já existente. A aplicação deveria providenciar todos os mecanismos de criação de contribuintes, empresas e atividades económicas, emissão de faturas e cálculo dos montantes de
+dedução fiscal associado. Pretendia-se também que a aplicação guardasse registo de todas as operações efetuadas e que depois tenha mecanismos (funcionalidades) para as disponibilizar, como por exemplo, permitir ver as faturas emitidas por uma empresa, extrato de faturação de uma empresa num determinado período, valor total de despesas de um contribuinte, entre outras.
+
+\section{Arquitetura de Classes: As classes mais importantes}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{diagrama.png}
+\end{figure}
+
+\subsection{Identidade Fiscal}
+
+A classe IdentidadeFiscal é a classe principal de onde derivam as subclasses Contribuinte, Empresa e Admin. É uma classe abstrata devido ao facto de nunca ser necessário instanciar uma Identidade Fiscal sem especificar, sendo que apenas são instanciadas empresas, contribuintes e o admin. A classe IdentidadeFiscal contém as variáveis de instância que serão comuns às suas 3 subclasses, como o nome, o email, a password, etc. Cada uma das subclasses implementa depois o que as diferencia das outras subclasses, justificando a criação destas, como a lista de dependentes no caso do Contribuinte, o concelho a que pertence no caso das Empresas. A subclasse Admin foi criada para facilitar a forma de lidar com os privilégios extra deste utilizador.
+
+\subsection{Fatura}
+A classe Fatura é a classe a partir da qual serão instanciadas todas as faturas no programa, não havendo subclasses, pois todas as faturas têm a mesma informação, que consiste num numero de fatura, o NIF do emitente e do cliente, a descrição da despesa, o histórico de atividades atribuídas a essa fatura, o valor da despesa e a data. É importante salientar que é usado uma lista para as atividades devido à funcionalidade que possibilita ver o histórico de atividades que uma fatura já teve, sendo que estas são primeiramente emitidas como faturas pendentes, não lhes estando atribuída uma atividade específica, exceto se a empresa que a emitiu apenas se focar num setor económico. Quando é necessário aceder à atual atividade da Fatura em questão é apenas retornado o último elemento da lista. 
+
+
+% Commands to include a figure:
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.5\textwidth]{frog.jpg}
+%\caption{\label{fig:frog}This is a figure caption.}
+%\end{figure}
+
+%\begin{table}
+%\centering
+%\begin{tabular}{l|r}
+%Item & Quantity \\\hline
+%Widgets & 42 \\
+%Gadgets & 13
+%\end{tabular}
+%\caption{\label{tab:widgets}An example table.}
+%\end{table}
+
+\subsection{Atividade}
+A classe Atividade é a classe principal das subclasses de atividades económicas, como a AtividadeAlimentacao e a AtividadeSaude, por exemplo. Estas subclasses têm apenas uma coisa em comum, o nome da atividade. Em cada subclasse da Atividade (exceto Lazer pois não conta para dedução) é definido o método de dedução que vai calcular o valor que deve ser deduzido em cada fatura, caso a Atividade correspondente seja uma das que contam para dedução fiscal. Neste algoritmo é tido em conta a atividade, a localização da empresa emitente, isto é, se é do interior ou não, o número de dependentes do contribuinte, e o valor máximo de dedução de cada tipo de despesa.
+
+\subsection{ControlClass}
+Se considerarmos o programa como uma caixa fechada com exceção de uma pequena abertura, sendo o interior as classes com a sua informação, e o exterior o interface do utilizador, esta classe seria a entrada da caixa, isto é, faz a ligação entre a informação e o utilizador, retornando aquilo que o utilizador pede (apenas aquilo a que está autorizado), sem que este consiga ver ou alterar o estado interno. É nesta classe que se definem os métodos que proporcionam as "funcionalidades" do programa, e a partir daí são redirecionadas as respostas para o interface do utilizador.
+
+\section{Funcionalidades}
+
+\subsection{Contribuinte}
+\begin{itemize}
+\item \textbf{\underline{Ver Faturas emitidas em seu nome:}}através do NIF do contribuinte, é relativamente simples procurar o contribuinte correto no HashMap das Identidades Fiscais, utilizando o NIF como key. Quando já se tem o Contribuinte em questão, é feito o \textit{get} da Lista das faturas que todas as Identidades Fiscais têm, obtendo-se assim todas as faturas referentes a esse contribuinte.
+\item \textbf{\underline{Corrigir a Atividade de uma Fatura:}} com a informação do contribuinte que está \textit{logged in}, é utilizado o \textit{getFaturas} para obter a lista das faturas. O contribuinte escolhe então uma fatura, e é adicionada à Lista de atividades da fatura a nova atividade.
+\end{itemize}
+
+\subsection{Empresa}
+\begin{itemize}
+\item \textbf{\underline{Obter as faturas da empresa ordenadas por data ou valor:}} o procedimento é o mesmo que o que permite aos contribuintes verem todas as faturas emitidas em seu nome, mas desta vez, aplicado a uma empresa. Depois de ter a lista das faturas, esta é ordenada pela ordem desejada.
+\item \textbf{\underline{Obter a lista de faturas por contribuinte num intervalo de datas:}} as faturas da empresa em questão são filtradas de acordo com o NIF cliente, e depois por data, sendo retornadas a lista de faturas que corresponde a esses dois critérios.
+\item \textbf{\underline{Obter a lista de faturas por contribuinte ordenadas por valor de despesa:}} as faturas da empresa em questão sao filtradas por NIF do contribuinte, e é retornada a lista de Faturas ordenada por valor decrescente de despesa, recorrendo a um comparator.
+\item \textbf{\underline{Total faturado por uma empresa:}} é percorrida a lista das faturas da empresa, somando o valor das faturas que estão dentro do perído de tempo estipulado, sendo retornado o valor total.
+\end{itemize}
+
+\subsection{Admin}
+\begin{itemize}
+\item \textbf{\underline{Relação 10 contribuintes que mais gastam:}} é percorrido o HashMap que contém todas as identidades fiscais e são filtrados todos os contribuintes individuais para uma lista que é ordenada segundo os gastos de cada um deles. No final são mantidos apenas na lista os primeiros dez contribuintes.
+
+\item \textbf{\underline{Relação 10 empresas que mais faturam:}} é percorrido o HashMap que contém todas as identidades fiscais e são filtradas todas as Empresas para uma lista que é ordenada segundo o total faturado de cada um deles. No final mantemos apenas na lista os primeiros dez contribuintes
+\end{itemize}
+
+\section{Estruturas de Dados}
+No que toca a estruturas de dados, foram usados ArrayLists, e um HashMap para guardar as identidades fiscais.
+
+\section{Conclusão}
+Este projeto foi uma excelente oportunidade para aplicar conhecimentos relativos ao paradigma de programação orientada a objetos, usando Java como linguagem de desenvolvimento do projeto. Relativamente a possíveis aspetos a melhorar no projeto, salienta-se que poderia ter sido usado um algoritmo de cálculo de dedução mais específico, e uma lista de concelhos que abrangesse todos os concelhos do país.
+
+\end{document}
